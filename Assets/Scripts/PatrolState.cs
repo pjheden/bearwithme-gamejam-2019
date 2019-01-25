@@ -7,6 +7,8 @@ public class PatrolState : State
 {
     public GameObject waypointContainer;
     private List<Transform> waypoints;
+    private bool playerSpotted;
+
     [SerializeField] private float radiusTreshold;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float visionSpread;
@@ -16,6 +18,7 @@ public class PatrolState : State
 
     private void Start()
     {
+        playerSpotted = false;
         waypoints = new List<Transform>();
         for (int i = 0; i < waypointContainer.transform.childCount; i++)
         {
@@ -47,9 +50,10 @@ public class PatrolState : State
     {
         Transform kidTransform = controller.kid.transform;
         // check if we should do a transistion
-        State state;
-        if (false)
+        if (playerSpotted)
         {
+            //AttackState state;
+            AttackState state = GetComponent<AttackState>();
             controller.TransitionToState(state);
         }
 
@@ -80,6 +84,10 @@ public class PatrolState : State
         {
             Debug.DrawRay(start, kidTransform.TransformDirection(end) * hit.distance, Color.yellow);
             Debug.Log("Did Hit: " + hit.collider.gameObject.tag);
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                playerSpotted = true;
+            }
         }
         else
         {

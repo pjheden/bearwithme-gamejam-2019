@@ -79,7 +79,7 @@ public class PatrolState : State
         if (Physics.Raycast(start, kidTransform.TransformDirection(end), out hit, 30))
         {
             Debug.DrawRay(start, kidTransform.TransformDirection(end) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
+            Debug.Log("Did Hit: " + hit.collider.gameObject.tag);
         }
         else
         {

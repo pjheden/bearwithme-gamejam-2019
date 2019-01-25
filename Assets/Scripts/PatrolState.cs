@@ -52,6 +52,7 @@ public class PatrolState : State
         // check if we should do a transistion
         if (playerSpotted)
         {
+            playerSpotted = false;
             //AttackState state;
             AttackState state = GetComponent<AttackState>();
             controller.TransitionToState(state);
@@ -83,7 +84,6 @@ public class PatrolState : State
         if (Physics.Raycast(start, kidTransform.TransformDirection(end), out hit, 30))
         {
             Debug.DrawRay(start, kidTransform.TransformDirection(end) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit: " + hit.collider.gameObject.tag);
             if (hit.collider.gameObject.tag == "Player")
             {
                 playerSpotted = true;
@@ -92,7 +92,11 @@ public class PatrolState : State
         else
         {
             Debug.DrawRay(start, kidTransform.TransformDirection(end) * 1000, Color.white);
-            Debug.Log("Did not Hit");
         }
+    }
+
+    public override void PrintStateName()
+    {
+        Debug.Log("PatrolState");
     }
 }

@@ -26,4 +26,9 @@ public class SleepState : State
     {
         throw new System.NotImplementedException();
     }
+    public override void PrintStateName()
+    {
+        throw new System.NotImplementedException();
+    }
+
 }

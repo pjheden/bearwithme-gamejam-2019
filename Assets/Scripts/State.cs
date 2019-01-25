@@ -12,6 +12,8 @@ public abstract class State : MonoBehaviour
         CheckTransitions(controller);
     }
 
+    public abstract void PrintStateName();
+
     protected abstract void DoActions(FiniteStateMachine controller);
 
     protected abstract void CheckTransitions(FiniteStateMachine controller);

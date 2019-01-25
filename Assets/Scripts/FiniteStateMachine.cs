@@ -6,6 +6,7 @@ public class FiniteStateMachine : MonoBehaviour
 {
     public State currentState;
     public GameObject kid;
+    public GameObject doll;
 
     private bool aiActive;
 
@@ -26,6 +27,9 @@ public class FiniteStateMachine : MonoBehaviour
 
     public void TransitionToState(State nextState)
     {
+        Debug.Log("transition to state: " );
+        nextState.PrintStateName();
+
         currentState = nextState;
     }
 }

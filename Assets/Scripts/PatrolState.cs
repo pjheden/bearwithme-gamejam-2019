@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PluggableAI/State/Patrol")]
 public class PatrolState : State
 {
-
-    public GameObject[] waypoints;
+    public GameObject waypointContainer;
+    private List<Transform> waypoints;
     [SerializeField] private float radiusTreshold;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float visionSpread;
@@ -14,25 +14,33 @@ public class PatrolState : State
 
     private int waypointIndex = 0;
 
+    private void Start()
+    {
+        waypoints = new List<Transform>();
+        for (int i = 0; i < waypointContainer.transform.childCount; i++)
+        {
+            waypoints.Add(waypointContainer.transform.GetChild(i));
+        }
+    }
+
     protected override void DoActions(FiniteStateMachine controller)
     {
         // MOVEMENT
-        Transform target = waypoints[waypointIndex].transform;
+        Transform target = waypoints[waypointIndex];
         // Calculate direction
         Vector3 heading = target.position - controller.kid.transform.position;
         // if target reached, go to next waypoint
         float distance = heading.magnitude;
         if (distance <= radiusTreshold)
         {
-            waypointIndex = (waypointIndex + 1) % waypoints.Length;
+            waypointIndex = (waypointIndex + 1) % waypoints.Count;
         }
         // move to target
         var direction = heading / distance;
         controller.kid.transform.position = controller.kid.transform.position + direction * moveSpeed * Time.deltaTime;
 
-
-
-
+        // rotate to target
+        controller.kid.transform.LookAt(target.position);
     }
 
     protected override void CheckTransitions(FiniteStateMachine controller)
@@ -51,13 +59,13 @@ public class PatrolState : State
         for (int i = 0; i < numRays; i++)
         {
             float currentAngle = angleStep * i;
-            Vector3 positiveTarget = new Vector3( 1*Mathf.Cos(currentAngle), 0 ,1*Mathf.Sin(currentAngle) );
+            Vector3 positiveTarget = new Vector3( Mathf.Sin(currentAngle), 0 , Mathf.Cos(currentAngle) );
 
             CastRay(kidTransform, kidTransform.position, positiveTarget);
 
             if (currentAngle != 0)
             {
-                Vector3 negativeTarget = new Vector3(1 * Mathf.Cos(-currentAngle), 0, 1 * Mathf.Sin(-currentAngle));
+                Vector3 negativeTarget = new Vector3(Mathf.Sin(-currentAngle), 0, Mathf.Cos(-currentAngle));
                 CastRay(kidTransform, kidTransform.position, negativeTarget);
             }
 

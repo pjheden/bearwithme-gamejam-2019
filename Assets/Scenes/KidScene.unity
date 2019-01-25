@@ -891,6 +891,8 @@ MonoBehaviour:
   - {fileID: 1849049575}
   radiusTreshold: 0.5
   moveSpeed: 10
+  visionSpread: 30
+  numRays: 5
 --- !u!114 &1942669393
 MonoBehaviour:
   m_ObjectHideFlags: 0

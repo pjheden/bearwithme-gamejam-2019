@@ -3,20 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Drop : MonoBehaviour
+public class DropOffLocation : MonoBehaviour
 {
-    private List<GameObject> collectedObjects;
-    [SerializeField] private Text collectedText;
+    public CollectorHandler collectorHandler;
 
     // Start is called before the first frame update
     void Start()
     {
-        collectedObjects = new List<GameObject>();
-    }
-
-    private void SetCountText()
-    {
-        collectedText.text = collectedObjects.Count.ToString();
+        
     }
 
     // The pickupables colliders are disables when held.
@@ -25,10 +19,7 @@ public class Drop : MonoBehaviour
     {   
         if(other.gameObject.tag == "Pickupable")
         {
-            Debug.Log("COLLECTED: " + other.gameObject.name);
-            other.gameObject.active = false;
-            SetCountText();
+            collectorHandler.AddItemToCollectedObjects(other.gameObject);
         }
     }
- 
 }

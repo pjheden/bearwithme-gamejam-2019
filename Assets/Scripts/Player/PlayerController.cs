@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
   [Range(0, 5)]
   public float pickupDistance = 1f;
   public GameObject pickupObjectsParent;
+  public CollectorHandler collectorHandler;
 
   private float speed;
   private GameObject[] pickupObjects;
@@ -89,12 +90,14 @@ public class PlayerController : MonoBehaviour
   void PickupObject(GameObject objectToPickUp)
   {
     objectWeAreHolding = objectToPickUp;
+    collectorHandler.HighLightCorrectCollector(objectToPickUp.GetComponent<ObjectToCollect>().dropOffLocation);
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
   }
 
   void DropObject() 
   {
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = true;
+    collectorHandler.DisableHighlightOnCollector();
     objectWeAreHolding = null;
   }
 

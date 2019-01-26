@@ -8,6 +8,6 @@ public class ObjectToCollect : MonoBehaviour
 
     void Start() 
     {
-        ColorChanger.ChangeObjectCorToMatchType(transform.gameObject, dropOffLocation);
+        //ColorChanger.ChangeObjectCorToMatchType(transform.gameObject, dropOffLocation);
     }
 }

@@ -9,10 +9,17 @@ public class DropOffLocation : MonoBehaviour
     public CollectorTypes collectorType;
     public float deniedDistance;
 
+    [HideInInspector]
+    public Outline outline;
+
     // Start is called before the first frame update
     void Start()
     {
-        ColorChanger.ChangeObjectCorToMatchType(transform.gameObject, collectorType);
+        outline = gameObject.AddComponent<Outline>();
+        outline.OutlineColor = ColorChanger.GetTypeColor(collectorType);
+        outline.OutlineWidth = 10f;
+        outline.enabled = false;
+        // ColorChanger.ChangeObjectCorToMatchType(transform.gameObject, collectorType);
     }
 
     // The pickupables colliders are disables when held.

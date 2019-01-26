@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+#pragma warning disable 0649
 
 public class Collection : MonoBehaviour
 {
@@ -22,7 +23,8 @@ public class Collection : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Collectable")
+        Debug.Log("OnCollisionEnter! " + collision.gameObject.tag);
+        if (collision.gameObject.tag == "Pickupable")
         {
             collectedObjects.Add(collision.gameObject);
             SetCountText();
@@ -31,7 +33,7 @@ public class Collection : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Collectable")
+        if (collision.gameObject.tag == "Pickupable")
         {
             collectedObjects.Remove(collision.gameObject);
             SetCountText();

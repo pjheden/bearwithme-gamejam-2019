@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class State : MonoBehaviour
 {
-
     public void UpdateState(FiniteStateMachine controller)
     {
         DoActions(controller);

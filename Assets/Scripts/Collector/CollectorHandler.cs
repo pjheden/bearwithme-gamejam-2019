@@ -44,6 +44,8 @@ public class CollectorHandler : MonoBehaviour
 
     if (collectedObjects.Count == 10)
       gameController.SetWin(true);
+
+    GetComponent<AudioSource>().Play();
   }
 
   public void HighLightCorrectCollector(CollectorTypes type)
@@ -61,7 +63,7 @@ public class CollectorHandler : MonoBehaviour
   {
     foreach (DropOffLocation collector in collectors)
     {
-        collector.outline.enabled = false;
+      collector.outline.enabled = false;
     }
   }
 }

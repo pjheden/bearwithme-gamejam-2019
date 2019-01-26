@@ -12,6 +12,11 @@ public class SleepState : State
     [SerializeField] private GameObject bed;
     [SerializeField] private float radiusTreshold;
     [SerializeField] private float moveSpeed;
+    [Header("Sounds")]
+    public AudioClip enterBedClip;
+    public AudioClip leaveBedClip;
+    public AudioClip walkClip;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -50,11 +55,19 @@ public class SleepState : State
             float distance = heading.magnitude;
             if (distance <= radiusTreshold)
             {
+                audioSource.clip = enterBedClip;
+                audioSource.Play();
                 inBed = true;
+                return;
             }
             // move to target
             var direction = heading / distance;
             controller.kid.transform.position = controller.kid.transform.position + direction * moveSpeed * Time.deltaTime;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = walkClip;
+                audioSource.Play();
+            }
 
             // rotate to target
             controller.kid.transform.LookAt(target.position);
@@ -79,6 +92,9 @@ public class SleepState : State
     {
         sleeping = false;
         sleepTime = 0.0f;
+        
+        audioSource.clip = leaveBedClip;
+        audioSource.Play();
     }
 
 }

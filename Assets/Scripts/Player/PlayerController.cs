@@ -19,12 +19,12 @@ public class PlayerController : MonoBehaviour
   [Range(0, 5)]
   public float pickupDistance = 1f;
   public GameObject pickupObjectsParent;
+  public CollectorHandler collectorHandler;
   [Header("Sounds")]
   public AudioClip[] pickupSounds;
   public AudioClip walkSound;
 
-
-    private float speed;
+  private float speed;
   private GameObject[] pickupObjects;
   private Vector3 moveDirection = Vector3.zero;
   private CharacterController controller;
@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
   void PickupObject(GameObject objectToPickUp)
   {
     objectWeAreHolding = objectToPickUp;
+    collectorHandler.HighLightCorrectCollector(objectToPickUp.GetComponent<ObjectToCollect>().dropOffLocation);
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
     // Get rand clip
     int randIndex = Mathf.RoundToInt( Random.Range(0, pickupSounds.Length) );
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviour
   void DropObject() 
   {
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = true;
+    collectorHandler.DisableHighlightOnCollector();
     objectWeAreHolding = null;
   }
 

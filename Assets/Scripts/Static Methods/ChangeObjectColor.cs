@@ -24,6 +24,28 @@ public static class ColorChanger
         }
         objectToChange.GetComponent<Renderer>().material.SetColor("_Color", objectColor);
     }
+
+    public static Color GetTypeColor(CollectorTypes collectorType) 
+    {
+        Color objectColor;
+        switch (collectorType)
+        {
+            case CollectorTypes.BOOKSHELF:
+                objectColor = Color.blue;
+            break;
+            case CollectorTypes.CLOSET:
+                objectColor = Color.green;
+            break;
+            case CollectorTypes.DRAWER:
+                objectColor = Color.red;
+            break;
+            default:
+                objectColor = Color.white;
+            break;
+        }
+
+        return objectColor;
+    }
 }
 
 

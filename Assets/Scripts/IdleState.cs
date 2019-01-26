@@ -29,6 +29,15 @@ public class IdleState : State
         {
             nextState = GetComponent<PatrolState>();
         }
+
+        if (playerSpotted)
+        {
+            ResetValues();
+            AttackState state = GetComponent<AttackState>();
+            controller.TransitionToState(state);
+            return;
+        }
+
         // Check if finish idling
         if (idleTimer > maxIdleTime)
         {

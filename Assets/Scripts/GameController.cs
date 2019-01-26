@@ -13,12 +13,14 @@ public class GameController : MonoBehaviour
     [SerializeField] private float gameoverTime;
 
     private bool gameOver;
+    private bool isWin;
     private float score;
 
     // Start is called before the first frame update
     void Start()
     {
         gameOver = false;
+        isWin = false;
         SetTimeText();
     }
 
@@ -31,17 +33,22 @@ public class GameController : MonoBehaviour
             SetTimeText();
         }
 
-        if (roundTime <= 0.0f)
+        if (roundTime <= 0.0f || (isWin && !gameOver))
         {
             //Gameover
             gameOver = true;
             gameoverTime -= Time.deltaTime;
-            SetGameOverText();
+            SetGameOverText(isWin);
             if (gameoverTime <= 0.0f)
             {
                 SceneManager.LoadScene("KidScene");
             }
         }
+    }
+
+    public void SetWin(bool isWin)
+    {
+        this.isWin = isWin;
     }
 
     public void AddTime(float time)
@@ -54,15 +61,26 @@ public class GameController : MonoBehaviour
         score += scr;
     }
 
-    private void SetGameOverText()
+    private void SetGameOverText(bool win)
     {
-        lazerTimer.SetText("Game Over \n You collected " + score );
+        if (!win)
+        {
+            lazerTimer.SetText("Game Over \n You missed " + (10 - score) );
+        } else
+        {
+            lazerTimer.SetText("You win! \n Time left " + Mathf.Round(roundTime).ToString());
+        }
         lazerTimer.fontSize = 19;
     }
 
     private void SetTimeText()
     {
-        lazerTimer.SetText("00:"+ Mathf.Round(roundTime).ToString());
+        string seconds = Mathf.Round(roundTime).ToString();
+        if (seconds.Length == 1)
+        {
+            seconds = "0" + seconds;
+        }
+        lazerTimer.SetText("00:"+ seconds);
     }
 
 }

@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour
     UpdatePlayerPosition();
     DrawDebugLines();
 
-    if(Input.GetKeyDown(KeyCode.Space)){
+    if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
+        {
       if(objectWeAreHolding == null)
         TryToPickupObject();
       else {
@@ -113,6 +114,8 @@ public class PlayerController : MonoBehaviour
         // Lerp rotation, from current rotation to target rotation with set speed
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
       }
+
+        transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
     }
 
     // Update position of object we are holding

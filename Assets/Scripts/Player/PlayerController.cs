@@ -40,8 +40,9 @@ public class PlayerController : MonoBehaviour
   void Update()
   {
     UpdatePlayerPosition();
-    DrawDebugLines();
     CheckPlayerPickupInput();
+    
+    DrawDebugLines();
   }
 
   void CheckPlayerPickupInput() 
@@ -50,9 +51,8 @@ public class PlayerController : MonoBehaviour
         {
       if(objectWeAreHolding == null)
         TryToPickupObject();
-      else {
+      else 
         DropObject();
-      }
     }
   }
 

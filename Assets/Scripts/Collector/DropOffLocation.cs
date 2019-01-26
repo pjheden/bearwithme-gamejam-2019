@@ -13,25 +13,6 @@ public class DropOffLocation : MonoBehaviour
     void Start()
     {
         ColorChanger.ChangeObjectCorToMatchType(transform.gameObject, collectorType);
-
-        // Color objectColor;
-        // switch (collectorType)
-        // {
-        //     case CollectorTypes.BOOKSHELF:
-        //         objectColor = Color.blue;
-        //     break;
-        //     case CollectorTypes.CLOSET:
-        //         objectColor = Color.green;
-        //     break;
-        //     case CollectorTypes.DRAWER:
-        //         objectColor = Color.red;
-        //     break;
-        //     default:
-        //         objectColor = Color.white;
-        //     break;
-        // }
-
-        // GetComponent<Renderer>().material.SetColor("_Color", objectColor);
     }
 
     // The pickupables colliders are disables when held.

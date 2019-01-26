@@ -18,12 +18,6 @@ public class CollectorHandler : MonoBehaviour
         SetCountText();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetCountText()
     {
         collectedText.SetText(collectedObjects.Count.ToString());

@@ -20,8 +20,11 @@ public class ObjectToCollect : MonoBehaviour
             case CollectorTypes.DRAWER:
                 objectColor = Color.red;
             break;
+            default:
+                objectColor = Color.white;
+            break;
         }
 
-        // GetComponent<Renderer>().material.SetColor(objectColor);
+        GetComponent<Renderer>().material.SetColor("_Color", objectColor);
     }
 }

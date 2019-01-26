@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
       horizontalMove = -Input.GetAxis("Horizontal");
       verticalMove = -Input.GetAxis("Vertical");
 
-      moveDirection = new Vector3(horizontalMove, 0.0f, verticalMove);
+      moveDirection = new Vector3(horizontalMove, 0.0f, verticalMove).normalized;
       moveDirection *= speed;
 
       controller.Move(moveDirection * Time.deltaTime);

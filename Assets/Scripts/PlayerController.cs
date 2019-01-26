@@ -94,8 +94,8 @@ public class PlayerController : MonoBehaviour
     // On key down get move direction, move player and set look direction
     if (Input.anyKey)
     {
-      horizontalMove = Input.GetAxis("Horizontal");
-      verticalMove = Input.GetAxis("Vertical");
+      horizontalMove = -Input.GetAxis("Horizontal");
+      verticalMove = -Input.GetAxis("Vertical");
 
       moveDirection = new Vector3(horizontalMove, 0.0f, verticalMove);
       moveDirection *= speed;

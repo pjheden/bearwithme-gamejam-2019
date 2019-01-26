@@ -1967,7 +1967,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5167,6 +5167,11 @@ PrefabInstance:
       propertyPath: pickupSounds.Array.data[2]
       value: 
       objectReference: {fileID: 8300000, guid: ab17ebb20e0bf1744a8bc96ae857b86f, type: 3}
+    - target: {fileID: 4781407552922311707, guid: 8c10d6258fde8e04fa31544db0c4c703,
+        type: 3}
+      propertyPath: walkSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0535081873e9c804cb3966d686b28a9f, type: 3}
     - target: {fileID: 4781407552922311704, guid: 8c10d6258fde8e04fa31544db0c4c703,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6670,6 +6675,11 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1105529993}
+    - target: {fileID: 7888994335870961658, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
+        type: 3}
+      propertyPath: escapeTreshold
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7888994335870961659, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
         type: 3}
       propertyPath: visionSpread

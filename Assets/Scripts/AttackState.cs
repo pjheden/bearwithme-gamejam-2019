@@ -11,6 +11,7 @@ public class AttackState : State
      */
     private bool playerThrown;
     [SerializeField] private float radiusTreshold;
+    [SerializeField] private float escapeTreshold;
     [SerializeField] private float moveSpeed;
     [Header("Sounds")]
     public AudioClip walkClip;
@@ -51,6 +52,11 @@ public class AttackState : State
             controller.gameController.AddTime(-5.0f);
 
             playerThrown = true;
+            return;
+        }else if(distance > escapeTreshold)
+        {
+            playerThrown = true;
+            return;
         }
         // move to target
         var direction = heading / distance;

@@ -3,6 +3,27 @@ guid: 2fbe745d181bf113d8a5451d4d2ef2cb
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
+    100000: Collider
+    100002: Door
+    100004: Room
+    100006: //RootNode
+    400000: Collider
+    400002: Door
+    400004: Room
+    400006: //RootNode
+    2100000: unnamed
+    2100002: Room
+    2300000: Collider
+    2300002: Door
+    2300004: Room
+    3300000: Collider
+    3300002: Door
+    3300004: Room
+    4300000: Collider
+    4300002: Door
+    4300004: Room
+    7400000: Default Take
+    9500000: //RootNode
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -57,7 +78,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

@@ -57,8 +57,8 @@ public class AttackState : State
         playerThrown = false;
     }
 
-    public override void PrintStateName()
+    public override string GetStateName()
     {
-        Debug.Log("AttackState");
+        return "AttackState";
     }
 }

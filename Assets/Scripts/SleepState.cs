@@ -68,10 +68,11 @@ public class SleepState : State
         inBed = false;
     }
 
-    public override void PrintStateName()
+    public override string GetStateName()
     {
-        Debug.Log("SleepState");
+        return "SleepState";
     }
+
 
     public void Wake()
     {

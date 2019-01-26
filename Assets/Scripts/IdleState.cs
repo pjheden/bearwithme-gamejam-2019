@@ -61,9 +61,9 @@ public class IdleState : State
         nextState = state;
     }
 
-    public override void PrintStateName()
+    public override string GetStateName()
     {
-        Debug.Log("IdleState");
+        return "IdleState";
     }
 
 }

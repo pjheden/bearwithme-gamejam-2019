@@ -116,8 +116,8 @@ public class PatrolState : State
         shouldIdle = false;
     }
 
-    public override void PrintStateName()
+    public override string GetStateName()
     {
-        Debug.Log("PatrolState");
+        return "PatrolState";
     }
 }

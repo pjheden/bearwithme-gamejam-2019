@@ -27,9 +27,12 @@ public class FiniteStateMachine : MonoBehaviour
 
     public void TransitionToState(State nextState)
     {
-        Debug.Log("transition to state: " );
-        nextState.PrintStateName();
-
         currentState = nextState;
+    }
+
+    // Debug function for Kid
+    void OnGUI()
+    {
+        GUI.Label(new Rect(0, 0, 100.0f, 100.0f), "Kid State: " + currentState.GetStateName());
     }
 }

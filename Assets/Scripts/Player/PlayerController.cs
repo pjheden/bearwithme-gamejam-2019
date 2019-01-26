@@ -139,14 +139,13 @@ public class PlayerController : MonoBehaviour
         // Lerp rotation, from current rotation to target rotation with set speed
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
       }
-
         // Force y position
         transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
     }
 
     // Update position of object we are holding
     if(objectWeAreHolding != null) {
-      objectWeAreHolding.transform.position = transform.position + transform.forward;        
+      objectWeAreHolding.transform.position = Vector3.Lerp(objectWeAreHolding.transform.position,transform.position + transform.forward, Time.deltaTime * 20); // Lerp object position on pickup        
     }
   }
 

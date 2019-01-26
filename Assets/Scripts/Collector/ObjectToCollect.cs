@@ -8,20 +8,6 @@ public class ObjectToCollect : MonoBehaviour
 
     void Start() 
     {
-        Color objectColor;
-        switch (dropOffLocation)
-        {
-            case CollectorTypes.BOOKSHELF:
-                objectColor = Color.blue;
-            break;
-            case CollectorTypes.CLOSET:
-                objectColor = Color.green;
-            break;
-            case CollectorTypes.DRAWER:
-                objectColor = Color.red;
-            break;
-        }
-
-        // GetComponent<Renderer>().material.SetColor(objectColor);
+        ColorChanger.ChangeObjectCorToMatchType(transform.gameObject, dropOffLocation);
     }
 }

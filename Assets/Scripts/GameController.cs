@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour
         {
             seconds = "0" + seconds;
         }
-        lazerTimer.SetText("00:"+ seconds);
+        lazerTimer.SetText("00:" + seconds);
     }
 
 }

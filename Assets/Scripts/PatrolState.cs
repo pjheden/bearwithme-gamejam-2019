@@ -92,6 +92,13 @@ public class PatrolState : State
         
     }
 
+    private void DrawRay(List<Vector3> vertices)
+    {
+        Mesh m = new Mesh();
+        //https://www.linkedin.com/pulse/using-raycasts-dynamically-generated-geometry-create-line-thomas/
+
+    }
+
     private void CastRay(Transform kidTransform, Vector3 start, Vector3 end)
     {
         RaycastHit hit;

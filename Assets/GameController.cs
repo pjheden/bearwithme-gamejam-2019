@@ -7,7 +7,6 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
-    public Text timer;
     public TextMeshPro lazerTimer;
 
     [SerializeField] private float roundTime;
@@ -40,7 +39,6 @@ public class GameController : MonoBehaviour
     private void SetTimeText()
     {
         lazerTimer.SetText("00:"+ Mathf.Round(roundTime).ToString());
-        timer.text = Mathf.Round(roundTime).ToString();
     }
 
 }

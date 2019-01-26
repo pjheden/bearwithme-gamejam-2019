@@ -43,6 +43,9 @@ public class AttackState : State
         {
             // pick up doll
             controller.doll.transform.position = Vector3.zero;
+            // Add time punishment
+            controller.gameController.AddTime(-5.0f);
+
             playerThrown = true;
         }
         // move to target

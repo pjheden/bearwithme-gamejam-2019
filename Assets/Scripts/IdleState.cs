@@ -11,6 +11,12 @@ public class IdleState : State
     [SerializeField] private float maxIdleTime;
     [SerializeField] private float radiusTreshold;
 
+    // Ray variables
+    [SerializeField] private float visionSpread;
+    [SerializeField] private int numRays;
+    private bool playerSpotted;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,15 +52,55 @@ public class IdleState : State
         }
     }
 
+    private void CastRay(Transform kidTransform, Vector3 start, Vector3 end)
+    {
+        RaycastHit hit;
+        int layerMask = 1 << 2;
+        layerMask = ~layerMask;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(start, kidTransform.TransformDirection(end), out hit, 30, layerMask))
+        {
+            Debug.DrawRay(start, kidTransform.TransformDirection(end) * hit.distance, Color.yellow);
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                playerSpotted = true;
+            }
+        }
+        else
+        {
+            Debug.DrawRay(start, kidTransform.TransformDirection(end) * 1000, Color.white);
+        }
+    }
+
     protected override void DoActions(FiniteStateMachine controller)
     {
         // Add time to idle timer
         idleTimer += Time.deltaTime;
+
+        Transform kidTransform = controller.kid.transform;
+
+        // Check raycasts
+        float angleStep = visionSpread / numRays;
+        for (int i = 0; i < numRays; i++)
+        {
+            float currentAngle = angleStep * i;
+            Vector3 positiveTarget = new Vector3(Mathf.Sin(currentAngle), 0, Mathf.Cos(currentAngle));
+
+            CastRay(kidTransform, kidTransform.position, positiveTarget);
+
+            if (currentAngle != 0)
+            {
+                Vector3 negativeTarget = new Vector3(Mathf.Sin(-currentAngle), 0, Mathf.Cos(-currentAngle));
+                CastRay(kidTransform, kidTransform.position, negativeTarget);
+            }
+
+        }
     }   
 
     private void ResetValues()
     {
         idleTimer = 0.0f;
+        playerSpotted = false;
     }
 
     public void SetNextState(State state)

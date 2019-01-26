@@ -102,9 +102,11 @@ public class PatrolState : State
 
     private void CastRay(Transform kidTransform, Vector3 start, Vector3 end)
     {
+        int layerMask = 1 << 2;
+        layerMask = ~layerMask;
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(start, kidTransform.TransformDirection(end), out hit, 30))
+        if (Physics.Raycast(start, kidTransform.TransformDirection(end), out hit, 30, layerMask))
         {
             Debug.DrawRay(start, kidTransform.TransformDirection(end) * hit.distance, Color.yellow);
             if (hit.collider.gameObject.tag == "Player")

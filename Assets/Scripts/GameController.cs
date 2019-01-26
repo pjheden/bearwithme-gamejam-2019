@@ -8,6 +8,9 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     public TextMeshPro lazerTimer;
+    public GameObject door;
+    private Quaternion startDoorPos;
+    private float doorCloseness;
 
     [SerializeField] private float roundTime;
     [SerializeField] private float gameoverTime;
@@ -21,6 +24,8 @@ public class GameController : MonoBehaviour
     {
         gameOver = false;
         isWin = false;
+        startDoorPos = door.transform.rotation;
+        doorCloseness = 0.0f;
         SetTimeText();
     }
 
@@ -39,11 +44,20 @@ public class GameController : MonoBehaviour
             gameOver = true;
             gameoverTime -= Time.deltaTime;
             SetGameOverText(isWin);
+            //Close the door
+            CloseDoor();
             if (gameoverTime <= 0.0f)
             {
                 SceneManager.LoadScene("KidScene");
             }
         }
+    }
+
+    private void CloseDoor()
+    {
+        Quaternion target = Quaternion.Euler(new Vector3(270f, 359.8f, 0f));
+        doorCloseness += Time.deltaTime * 0.75f;
+        door.transform.rotation = Quaternion.Lerp(startDoorPos, target, doorCloseness);
     }
 
     public void SetWin(bool isWin)

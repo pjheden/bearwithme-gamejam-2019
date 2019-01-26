@@ -41,8 +41,6 @@ public class DropOffLocation : MonoBehaviour
     void MoveObjectOutOfCollector(GameObject item)
     {
         Vector3 deniedPosition = transform.position + transform.forward * deniedDistance;
-        // deniedPosition.y = 1;
-        // item.transform.position = deniedPosition;
         StartCoroutine(MoveToPosition(deniedPosition, item, 0.5f));
     }
 

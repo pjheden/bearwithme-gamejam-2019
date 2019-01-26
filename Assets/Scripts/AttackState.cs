@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PluggableAI/State/Attack")]
 public class AttackState : State
 {
     /*
@@ -24,7 +23,10 @@ public class AttackState : State
         {
             playerThrown = false;
             //Transition
-            PatrolState state = GetComponent<PatrolState>();
+            //PatrolState state = GetComponent<PatrolState>();
+            //controller.TransitionToState(state);
+
+            SleepState state = GetComponent<SleepState>();
             controller.TransitionToState(state);
         }
     }

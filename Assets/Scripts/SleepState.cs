@@ -2,33 +2,76 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PluggableAI/State/Sleep")]
 public class SleepState : State
 {
+    private bool sleeping;
+    private float sleepTime;
+    private bool inBed;
+    [SerializeField] private float maxSleep;
+    [SerializeField] private GameObject bed;
+    [SerializeField] private float radiusTreshold;
+    [SerializeField] private float moveSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        sleeping = true;
+        inBed = false;
     }
 
     protected override void CheckTransitions(FiniteStateMachine controller)
     {
-        throw new System.NotImplementedException();
+        if (!sleeping)
+        {
+            sleeping = true;
+            inBed = false;
+            PatrolState state = GetComponent<PatrolState>();
+            controller.TransitionToState(state);
+        }
     }
 
     protected override void DoActions(FiniteStateMachine controller)
     {
-        throw new System.NotImplementedException();
+        if (inBed)
+        {
+            //if in bed, sleep
+            sleepTime += Time.deltaTime;
+            if (sleepTime > maxSleep)
+            {
+                Wake();
+            }
+        } else
+        {
+            //go to bed
+            Transform target = bed.transform;
+            // Calculate direction
+            Vector3 heading = target.position - controller.kid.transform.position;
+            // if target reached, go to next waypoint
+            float distance = heading.magnitude;
+            if (distance <= radiusTreshold)
+            {
+                inBed = true;
+            }
+            // move to target
+            var direction = heading / distance;
+            controller.kid.transform.position = controller.kid.transform.position + direction * moveSpeed * Time.deltaTime;
+
+            // rotate to target
+            controller.kid.transform.LookAt(target.position);
+        }
+
+        
     }
+
     public override void PrintStateName()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("SleepState");
+    }
+
+    public void Wake()
+    {
+        sleeping = false;
+        sleepTime = 0.0f;
     }
 
 }

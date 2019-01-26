@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PluggableAI/State/Patrol")]
 public class PatrolState : State
 {
     public GameObject waypointContainer;

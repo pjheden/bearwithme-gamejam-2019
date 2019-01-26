@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+  [Header("Movement settings")]
   [Range(0, 20)]
-  public float speed = 10f;
+  public float defaultSpeed = 10f;
+  [Range(0, 20)]
+  public float sprintSpeed = 15f;
   [Range(0, 20)]
   public float rotationSpeed = 10f;
   [Range(0, 20)]
   public float gravity = 10;
   [Range(0, 180)]
+  [Header("Pickup settings")]
   public float pickupAngle = 90f;
   [Range(0, 5)]
   public float pickupDistance = 1f;
   public GameObject pickupObjectsParent;
 
+  private float speed;
   private GameObject[] pickupObjects;
   private Vector3 moveDirection = Vector3.zero;
   private CharacterController controller;
@@ -27,6 +32,7 @@ public class PlayerController : MonoBehaviour
   {
     controller = GetComponent<CharacterController>();
 
+    speed = defaultSpeed;
     pickupObjects = new GameObject[pickupObjectsParent.transform.childCount];
     int count = 0;
     foreach (Transform child in pickupObjectsParent.transform)
@@ -41,7 +47,8 @@ public class PlayerController : MonoBehaviour
   {
     UpdatePlayerPosition();
     CheckPlayerPickupInput();
-    
+    CheckSpeedModifyerKey();
+
     DrawDebugLines();
   }
 
@@ -89,6 +96,15 @@ public class PlayerController : MonoBehaviour
   {
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = true;
     objectWeAreHolding = null;
+  }
+
+  void CheckSpeedModifyerKey() 
+  {
+    // If left shift is pressed, set move speed to sprint speed
+    if(Input.GetKey(KeyCode.LeftShift))
+      speed = sprintSpeed;
+    else
+      speed = defaultSpeed;
   }
 
   void UpdatePlayerPosition()

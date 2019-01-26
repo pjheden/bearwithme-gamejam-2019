@@ -15,6 +15,7 @@ public class IdleState : State
     [SerializeField] private float visionSpread;
     [SerializeField] private int numRays;
     private bool playerSpotted;
+    [SerializeField] private Material visionMaterial;
 
 
     // Start is called before the first frame update
@@ -61,23 +62,68 @@ public class IdleState : State
         }
     }
 
-    private void CastRay(Transform kidTransform, Vector3 start, Vector3 end)
+    private void DoRayCasts(Transform kidTransform)
     {
-        RaycastHit hit;
+        //Collect points for drawing mesh
+        List<Vector3> vertices = new List<Vector3>();
+        List<int> triangles = new List<int>();
+        Vector3 startingPoint = kidTransform.position;
+        vertices.Add(startingPoint);
+
+        float angleStep = visionSpread / numRays;
+        for (int i = 0; i < numRays; i++)
+        {
+            float currentAngle = angleStep * i;
+            Vector3 positiveTarget = new Vector3(Mathf.Sin(currentAngle), 0, Mathf.Cos(currentAngle));
+
+            CastRay(kidTransform, kidTransform.position, positiveTarget, vertices);
+
+            if (currentAngle != 0)
+            {
+                Vector3 negativeTarget = new Vector3(Mathf.Sin(-currentAngle), 0, Mathf.Cos(-currentAngle));
+                CastRay(kidTransform, kidTransform.position, negativeTarget, vertices);
+            }
+
+            if (i > 0)
+            {
+                triangles.Add(0);
+                triangles.Add(i);
+                triangles.Add(i + 1);
+            }
+        }
+        DrawRay(vertices, triangles);
+    }
+
+    private void DrawRay(List<Vector3> vertices, List<int> triangles)
+    {
+        Mesh m = new Mesh();
+        //https://www.linkedin.com/pulse/using-raycasts-dynamically-generated-geometry-create-line-thomas/
+        m.vertices = vertices.ToArray();
+        m.triangles = triangles.ToArray();
+        Graphics.DrawMesh(m, Vector3.zero, Quaternion.identity, visionMaterial, 0, null, 0, null, false, false, true);
+    }
+
+    private void CastRay(Transform kidTransform, Vector3 start, Vector3 end, List<Vector3> vertices)
+    {
         int layerMask = 1 << 2;
         layerMask = ~layerMask;
+        RaycastHit hit;
+        int maxDistance = 8;
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(start, kidTransform.TransformDirection(end), out hit, 30, layerMask))
+        Vector3 sightVector = kidTransform.TransformDirection(end);
+        if (Physics.Raycast(start, sightVector, out hit, maxDistance, layerMask))
         {
-            Debug.DrawRay(start, kidTransform.TransformDirection(end) * hit.distance, Color.yellow);
+            Debug.DrawRay(start, sightVector * hit.distance, Color.yellow);
             if (hit.collider.gameObject.tag == "Player")
             {
                 playerSpotted = true;
             }
+            vertices.Add(start + sightVector * hit.distance);
         }
         else
         {
-            Debug.DrawRay(start, kidTransform.TransformDirection(end) * 1000, Color.white);
+            Debug.DrawRay(start, sightVector * maxDistance, Color.white);
+            vertices.Add(start + sightVector * maxDistance);
         }
     }
 
@@ -89,21 +135,7 @@ public class IdleState : State
         Transform kidTransform = controller.kid.transform;
 
         // Check raycasts
-        float angleStep = visionSpread / numRays;
-        for (int i = 0; i < numRays; i++)
-        {
-            float currentAngle = angleStep * i;
-            Vector3 positiveTarget = new Vector3(Mathf.Sin(currentAngle), 0, Mathf.Cos(currentAngle));
-
-            CastRay(kidTransform, kidTransform.position, positiveTarget);
-
-            if (currentAngle != 0)
-            {
-                Vector3 negativeTarget = new Vector3(Mathf.Sin(-currentAngle), 0, Mathf.Cos(-currentAngle));
-                CastRay(kidTransform, kidTransform.position, negativeTarget);
-            }
-
-        }
+        DoRayCasts(kidTransform);
     }   
 
     private void ResetValues()

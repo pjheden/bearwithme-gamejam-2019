@@ -6094,6 +6094,21 @@ PrefabInstance:
       propertyPath: waypointContainer
       value: 
       objectReference: {fileID: 1509605044}
+    - target: {fileID: 7888994335870961662, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
+        type: 3}
+      propertyPath: visionMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b3cdad999820e7644ac5a67110affb59, type: 2}
+    - target: {fileID: 7888994335870961662, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
+        type: 3}
+      propertyPath: visionSpread
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7888994335870961662, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
+        type: 3}
+      propertyPath: numRays
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7888994335870961661, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
         type: 3}
       propertyPath: bed
@@ -6102,13 +6117,18 @@ PrefabInstance:
     - target: {fileID: 7888994335870961659, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
         type: 3}
       propertyPath: visionSpread
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7888994335870961659, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
         type: 3}
       propertyPath: numRays
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7888994335870961659, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
+        type: 3}
+      propertyPath: visionMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b3cdad999820e7644ac5a67110affb59, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 163d85afeb6c5ff41b4b0e9830d417c7, type: 3}
 --- !u!1 &7888994337795772335 stripped

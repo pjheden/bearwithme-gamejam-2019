@@ -41,7 +41,22 @@ public class DropOffLocation : MonoBehaviour
     void MoveObjectOutOfCollector(GameObject item)
     {
         Vector3 deniedPosition = transform.position + transform.forward * deniedDistance;
-        deniedPosition.y = 1;
-        item.transform.position = deniedPosition;
+        // deniedPosition.y = 1;
+        // item.transform.position = deniedPosition;
+        StartCoroutine(MoveToPosition(deniedPosition, item, 0.5f));
+    }
+
+
+    IEnumerator MoveToPosition(Vector3 newPosition, GameObject objectToMove, float time)
+    {
+        float elapsedTime = 0;
+        Vector3 startingPos = transform.position;
+        while (elapsedTime < time)
+        {
+            objectToMove.transform.position = Vector3.Lerp(objectToMove.transform.position, newPosition, (elapsedTime / time));
+            objectToMove.transform.position = new Vector3(objectToMove.transform.position.x, 1, objectToMove.transform.position.z);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
 }

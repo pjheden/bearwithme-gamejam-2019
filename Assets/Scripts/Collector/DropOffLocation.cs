@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DropOffLocation : MonoBehaviour
 {
     public CollectorHandler collectorHandler;
+    public CollectorTypes collectorType;
 
     // Start is called before the first frame update
     void Start()
@@ -18,8 +19,23 @@ public class DropOffLocation : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {   
         if(other.gameObject.tag == "Pickupable")
-        {
-            collectorHandler.AddItemToCollectedObjects(other.gameObject);
+        {   
+                collectorHandler.AddItemToCollectedObjects(other.gameObject);
+            // if(InCorrectDropOff(other.gameObject)){
+            // }
         }
+    }
+
+    bool InCorrectDropOff(GameObject item)
+    {
+        // If wrong location
+        if(item.GetComponent<ObjectToCollect>().dropOffLocation != collectorType){
+            MoveObjectOutOfCollector(item);
+        }
+        return true;
+    }
+
+    void MoveObjectOutOfCollector(GameObject item){
+
     }
 }

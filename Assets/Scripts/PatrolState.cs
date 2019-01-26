@@ -91,16 +91,16 @@ public class PatrolState : State
         float angleStep = visionSpread / numRays;
         for (int i = 0; i < numRays; i++)
         {
-            float currentAngle = angleStep * i;
+            float currentAngle = -visionSpread/2.0f + angleStep * i;
             Vector3 positiveTarget = new Vector3(Mathf.Sin(currentAngle), 0, Mathf.Cos(currentAngle));
 
             CastRay(kidTransform, kidTransform.position, positiveTarget, vertices);
 
-            if (currentAngle != 0)
-            {
-                Vector3 negativeTarget = new Vector3(Mathf.Sin(-currentAngle), 0, Mathf.Cos(-currentAngle));
-                CastRay(kidTransform, kidTransform.position, negativeTarget, vertices);
-            }
+            //if (currentAngle != 0)
+            //{
+            //    Vector3 negativeTarget = new Vector3(Mathf.Sin(-currentAngle), 0, Mathf.Cos(-currentAngle));
+            //    CastRay(kidTransform, kidTransform.position, negativeTarget, vertices);
+            //}
 
             if (i > 0)
             {

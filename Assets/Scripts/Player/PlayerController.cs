@@ -19,8 +19,12 @@ public class PlayerController : MonoBehaviour
   [Range(0, 5)]
   public float pickupDistance = 1f;
   public GameObject pickupObjectsParent;
+  [Header("Sounds")]
+  public AudioClip[] pickupSounds;
+  public AudioClip walkSound;
 
-  private float speed;
+
+    private float speed;
   private GameObject[] pickupObjects;
   private Vector3 moveDirection = Vector3.zero;
   private CharacterController controller;
@@ -90,6 +94,13 @@ public class PlayerController : MonoBehaviour
   {
     objectWeAreHolding = objectToPickUp;
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
+    // Get rand clip
+    int randIndex = Mathf.RoundToInt( Random.Range(0, pickupSounds.Length) );
+    AudioClip clip = pickupSounds[randIndex];
+    // Play clip
+    AudioSource audioSource = GetComponent<AudioSource>();
+    audioSource.clip = clip;
+    audioSource.Play();
   }
 
   void DropObject() 
@@ -122,6 +133,7 @@ public class PlayerController : MonoBehaviour
 
       if (moveDirection != Vector3.zero)
       {
+        PlayWalkingSound();
         // Creates a rotation with the target forward and up directions
         Quaternion rotation = Quaternion.LookRotation(moveDirection.normalized, Vector3.up);
         // Lerp rotation, from current rotation to target rotation with set speed
@@ -137,6 +149,18 @@ public class PlayerController : MonoBehaviour
       objectWeAreHolding.transform.position = transform.position + transform.forward;        
     }
   }
+
+private void PlayWalkingSound()
+{
+    // Play clip
+    AudioSource audioSource = GetComponent<AudioSource>();
+    if (!audioSource.isPlaying)
+    {
+        audioSource.clip = walkSound;
+        audioSource.Play();
+    }
+
+}
 
   bool IsObjectInValidAngle(GameObject pickupable) 
   {

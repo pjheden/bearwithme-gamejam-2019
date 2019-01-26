@@ -58,6 +58,11 @@ public class GameController : MonoBehaviour
         Quaternion target = Quaternion.Euler(new Vector3(270f, 359.8f, 0f));
         doorCloseness += Time.deltaTime * 0.75f;
         door.transform.rotation = Quaternion.Lerp(startDoorPos, target, doorCloseness);
+        AudioSource aSource = door.GetComponent<AudioSource>();
+        if (!aSource.isPlaying && doorCloseness > 0.8f && doorCloseness < 1.0f)
+        {
+            aSource.Play();
+        }
     }
 
     public void SetWin(bool isWin)

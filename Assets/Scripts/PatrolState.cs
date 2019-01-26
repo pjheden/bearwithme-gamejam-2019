@@ -18,6 +18,10 @@ public class PatrolState : State
     [SerializeField] private int numRays;
     [SerializeField] private Material visionMaterial;
 
+    [Header("Sounds")]
+    public AudioClip walkClip;
+    public AudioSource audioSource;
+
     private int waypointIndex = 0;
 
     private void Start()
@@ -50,6 +54,11 @@ public class PatrolState : State
         // move to target
         var direction = heading / distance;
         kidTransform.position = kidTransform.position + direction * moveSpeed * Time.deltaTime;
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = walkClip;
+            audioSource.Play();
+        }
 
         // rotate to target
         kidTransform.LookAt(target.position);
@@ -72,6 +81,7 @@ public class PatrolState : State
         if (shouldIdle)
         {
             ResetValues();
+            audioSource.Stop();
             IdleState state = GetComponent<IdleState>();
             controller.TransitionToState(state);
             return;
@@ -95,12 +105,6 @@ public class PatrolState : State
             Vector3 positiveTarget = new Vector3(Mathf.Sin(currentAngle), 0, Mathf.Cos(currentAngle));
 
             CastRay(kidTransform, kidTransform.position, positiveTarget, vertices);
-
-            //if (currentAngle != 0)
-            //{
-            //    Vector3 negativeTarget = new Vector3(Mathf.Sin(-currentAngle), 0, Mathf.Cos(-currentAngle));
-            //    CastRay(kidTransform, kidTransform.position, negativeTarget, vertices);
-            //}
 
             if (i > 0)
             {

@@ -12,6 +12,10 @@ public class AttackState : State
     private bool playerThrown;
     [SerializeField] private float radiusTreshold;
     [SerializeField] private float moveSpeed;
+    [Header("Sounds")]
+    public AudioClip walkClip;
+    public AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +55,11 @@ public class AttackState : State
         // move to target
         var direction = heading / distance;
         controller.kid.transform.position = controller.kid.transform.position + direction * moveSpeed * Time.deltaTime;
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = walkClip;
+            audioSource.Play();
+        }
 
         // rotate to target
         controller.kid.transform.LookAt(target.position);

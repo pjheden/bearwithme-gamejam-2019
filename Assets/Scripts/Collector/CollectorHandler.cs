@@ -35,5 +35,7 @@ public class CollectorHandler : MonoBehaviour
 
         if (collectedObjects.Count == 10)
             gameController.SetWin(true);
+
+        GetComponent<AudioSource>().Play();
     }
 }

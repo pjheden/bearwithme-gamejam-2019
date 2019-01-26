@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PluggableAI/State")]
 public abstract class State : MonoBehaviour
 {
 
@@ -11,6 +10,8 @@ public abstract class State : MonoBehaviour
         DoActions(controller);
         CheckTransitions(controller);
     }
+
+    public abstract string GetStateName();
 
     protected abstract void DoActions(FiniteStateMachine controller);
 

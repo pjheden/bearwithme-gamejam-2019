@@ -7,6 +7,7 @@ public class FiniteStateMachine : MonoBehaviour
     public State currentState;
     public GameObject kid;
     public GameObject doll;
+    public GameController gameController;
 
     private bool aiActive;
 

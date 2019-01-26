@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d9cec5cc997863e429bce983374fd7ac
+guid: cd92986587baf446482a7d5d0fc6b362
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -23,9 +23,9 @@ ModelImporter:
     3300004: Shirt
     3300006: Sphere
     4300000: Sphere
-    4300002: Pants
-    4300004: Shirt
-    4300006: base mesh kid
+    4300002: base mesh kid
+    4300004: Pants
+    4300006: Shirt
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:

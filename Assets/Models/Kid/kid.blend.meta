@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a4303da580a3de2469adce468a78850a
+guid: e637c1aefedd54075ab91ba92b44d902
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -13,8 +13,8 @@ ModelImporter:
     400004: Pants
     400006: Shirt
     400008: Sphere
-    2100000: Kid__kid
-    2100002: Kid
+    2100000: Kid
+    2100002: Kid__kid
     2300000: base_mesh_kid
     2300002: Pants
     2300004: Shirt
@@ -24,9 +24,9 @@ ModelImporter:
     3300004: Shirt
     3300006: Sphere
     4300000: Sphere
-    4300002: Pants
-    4300004: Shirt
-    4300006: base_mesh_kid
+    4300002: base_mesh_kid
+    4300004: Pants
+    4300006: Shirt
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs

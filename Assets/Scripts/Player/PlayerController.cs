@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
   public float gravity = 10;
   [Range(0, 180)]
   public float pickupAngle = 90f;
-  [Range(0, 2)]
+  [Range(0, 5)]
   public float pickupDistance = 1f;
   public GameObject pickupObjectsParent;
 
@@ -41,7 +41,11 @@ public class PlayerController : MonoBehaviour
   {
     UpdatePlayerPosition();
     DrawDebugLines();
+    CheckPlayerPickupInput();
+  }
 
+  void CheckPlayerPickupInput() 
+  {
     if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {
       if(objectWeAreHolding == null)
@@ -77,21 +81,14 @@ public class PlayerController : MonoBehaviour
 
   void PickupObject(GameObject objectToPickUp)
   {
-    // Debug.Log("Picked Up: " + objectToPickUp.name);
     objectWeAreHolding = objectToPickUp;
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
   }
 
   void DropObject() 
   {
-    // Debug.Log("Droped Object: " + objectWeAreHolding.name);
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = true;
     objectWeAreHolding = null;
-  }
-
-  void DidWeDropAtCollectorLocation()
-  {
-
   }
 
   void UpdatePlayerPosition()
@@ -115,6 +112,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
       }
 
+        // Force y position
         transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
     }
 

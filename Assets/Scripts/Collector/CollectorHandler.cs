@@ -37,7 +37,7 @@ public class CollectorHandler : MonoBehaviour
 
         // Debug.Log("COLLECTED: " + item.gameObject.name);
         SetCountText();
-        item.gameObject.active = false;
+        item.gameObject.SetActive(false);
 
         if (collectedObjects.Count == 10)
             gameController.SetWin(true);

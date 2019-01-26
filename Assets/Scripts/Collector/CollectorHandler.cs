@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class CollectorHandler : MonoBehaviour
 {
     [SerializeField] private Text collectedText;
-    
+    [SerializeField] private float bonusDeliverTime;
+    public GameController gameController;
     private List<GameObject> collectedObjects;
 
     // Start is called before the first frame update
@@ -30,6 +31,7 @@ public class CollectorHandler : MonoBehaviour
     public void AddItemToCollectedObjects(GameObject item)
     {
         collectedObjects.Add(item);
+        gameController.AddTime(bonusDeliverTime);
 
         // Debug.Log("COLLECTED: " + item.gameObject.name);
         SetCountText();

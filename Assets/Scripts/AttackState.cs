@@ -42,7 +42,7 @@ public class AttackState : State
         if (distance <= radiusTreshold)
         {
             // pick up doll
-            controller.doll.transform.position = Vector3.zero;
+            controller.doll.transform.position = new Vector3(0, 1, 0);
             // Add time punishment
             controller.gameController.AddTime(-5.0f);
 

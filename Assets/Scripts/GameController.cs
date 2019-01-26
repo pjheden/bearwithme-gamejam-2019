@@ -10,30 +10,54 @@ public class GameController : MonoBehaviour
     public TextMeshPro lazerTimer;
 
     [SerializeField] private float roundTime;
+    [SerializeField] private float gameoverTime;
+
+    private bool gameOver;
+    private float score;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameOver = false;
         SetTimeText();
     }
 
     // Update is called once per frame
     void Update()
     {
-        roundTime -= Time.deltaTime;
-        roundTime = (roundTime < 0) ? 0 : roundTime;
-        SetTimeText();
+        if (!gameOver)
+        {
+            roundTime -= Time.deltaTime;
+            SetTimeText();
+        }
 
         if (roundTime <= 0.0f)
         {
             //Gameover
-            SceneManager.LoadScene("KidScene");
+            gameOver = true;
+            gameoverTime -= Time.deltaTime;
+            SetGameOverText();
+            if (gameoverTime <= 0.0f)
+            {
+                SceneManager.LoadScene("KidScene");
+            }
         }
     }
 
     public void AddTime(float time)
     {
         roundTime += time;
+    }
+
+    public void AddScore(float scr)
+    {
+        score += scr;
+    }
+
+    private void SetGameOverText()
+    {
+        lazerTimer.SetText("Game Over \n You collected " + score );
+        lazerTimer.fontSize = 19;
     }
 
     private void SetTimeText()

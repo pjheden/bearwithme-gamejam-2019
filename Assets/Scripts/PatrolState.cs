@@ -8,6 +8,9 @@ public class PatrolState : State
     private List<Transform> waypoints;
     private bool playerSpotted;
 
+    private bool shouldIdle;
+    [SerializeField] private float idleChance;
+
     [SerializeField] private float radiusTreshold;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float visionSpread;
@@ -17,7 +20,7 @@ public class PatrolState : State
 
     private void Start()
     {
-        playerSpotted = false;
+        ResetValues();
         waypoints = new List<Transform>();
         for (int i = 0; i < waypointContainer.transform.childCount; i++)
         {
@@ -27,43 +30,34 @@ public class PatrolState : State
 
     protected override void DoActions(FiniteStateMachine controller)
     {
+        Transform kidTransform = controller.kid.transform;
+
         // MOVEMENT
         Transform target = waypoints[waypointIndex];
         // Calculate direction
-        Vector3 heading = target.position - controller.kid.transform.position;
+        Vector3 heading = target.position - kidTransform.position;
         // if target reached, go to next waypoint
         float distance = heading.magnitude;
         if (distance <= radiusTreshold)
         {
             waypointIndex = (waypointIndex + 1) % waypoints.Count;
+            // Maybe idle
+            float rand = Random.Range(0, 100) / 100.0f;
+            shouldIdle = (rand < idleChance) ? true : false;
         }
         // move to target
         var direction = heading / distance;
-        controller.kid.transform.position = controller.kid.transform.position + direction * moveSpeed * Time.deltaTime;
+        kidTransform.position = kidTransform.position + direction * moveSpeed * Time.deltaTime;
 
         // rotate to target
-        controller.kid.transform.LookAt(target.position);
-    }
-
-    protected override void CheckTransitions(FiniteStateMachine controller)
-    {
-        Transform kidTransform = controller.kid.transform;
-        // check if we should do a transistion
-        if (playerSpotted)
-        {
-            playerSpotted = false;
-            //AttackState state;
-            AttackState state = GetComponent<AttackState>();
-            controller.TransitionToState(state);
-        }
-
+        kidTransform.LookAt(target.position);
 
         // Check raycasts
         float angleStep = visionSpread / numRays;
         for (int i = 0; i < numRays; i++)
         {
             float currentAngle = angleStep * i;
-            Vector3 positiveTarget = new Vector3( Mathf.Sin(currentAngle), 0 , Mathf.Cos(currentAngle) );
+            Vector3 positiveTarget = new Vector3(Mathf.Sin(currentAngle), 0, Mathf.Cos(currentAngle));
 
             CastRay(kidTransform, kidTransform.position, positiveTarget);
 
@@ -74,6 +68,28 @@ public class PatrolState : State
             }
 
         }
+    }
+
+    protected override void CheckTransitions(FiniteStateMachine controller)
+    {
+        // check if we should do a transistion
+        if (playerSpotted)
+        {
+            ResetValues();
+            AttackState state = GetComponent<AttackState>();
+            controller.TransitionToState(state);
+            return;
+        }
+
+        if (shouldIdle)
+        {
+            ResetValues();
+            IdleState state = GetComponent<IdleState>();
+            controller.TransitionToState(state);
+            return;
+        }
+
+        
     }
 
     private void CastRay(Transform kidTransform, Vector3 start, Vector3 end)
@@ -92,6 +108,12 @@ public class PatrolState : State
         {
             Debug.DrawRay(start, kidTransform.TransformDirection(end) * 1000, Color.white);
         }
+    }
+
+    private void ResetValues()
+    {
+        playerSpotted = false;
+        shouldIdle = false;
     }
 
     public override void PrintStateName()

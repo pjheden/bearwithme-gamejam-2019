@@ -21,7 +21,7 @@ public class AttackState : State
     {
         if (playerThrown)
         {
-            playerThrown = false;
+            ResetValues();
             //Transition
             //PatrolState state = GetComponent<PatrolState>();
             //controller.TransitionToState(state);
@@ -50,6 +50,11 @@ public class AttackState : State
 
         // rotate to target
         controller.kid.transform.LookAt(target.position);
+    }
+
+    private void ResetValues()
+    {
+        playerThrown = false;
     }
 
     public override void PrintStateName()

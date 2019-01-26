@@ -251,7 +251,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Toys collected:'
+  m_Text: 'TEST Toys collected:'
 --- !u!222 &128039470
 CanvasRenderer:
   m_ObjectHideFlags: 0

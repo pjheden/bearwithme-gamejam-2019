@@ -23,8 +23,7 @@ public class SleepState : State
     {
         if (!sleeping)
         {
-            sleeping = true;
-            inBed = false;
+            ResetValues();
             PatrolState state = GetComponent<PatrolState>();
             controller.TransitionToState(state);
         }
@@ -61,6 +60,12 @@ public class SleepState : State
         }
 
         
+    }
+
+    private void ResetValues()
+    {
+        sleeping = true;
+        inBed = false;
     }
 
     public override void PrintStateName()

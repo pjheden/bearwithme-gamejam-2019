@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
   private CharacterController controller;
   private float horizontalMove;
   private float verticalMove;
-  private GameObject closestForPickup;
   private GameObject objectWeAreHolding;
 
   void Start()
@@ -77,16 +76,21 @@ public class PlayerController : MonoBehaviour
 
   void PickupObject(GameObject objectToPickUp)
   {
-    Debug.Log("Picked Up: " + objectToPickUp.name);
+    // Debug.Log("Picked Up: " + objectToPickUp.name);
     objectWeAreHolding = objectToPickUp;
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
   }
 
   void DropObject() 
   {
-    Debug.Log("Droped Object: " + objectWeAreHolding.name);
+    // Debug.Log("Droped Object: " + objectWeAreHolding.name);
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = true;
     objectWeAreHolding = null;
+  }
+
+  void DidWeDropAtCollectorLocation()
+  {
+
   }
 
   void UpdatePlayerPosition()

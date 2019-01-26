@@ -78,8 +78,8 @@ public class PlayerController : MonoBehaviour
   void PickupObject(GameObject objectToPickUp)
   {
     Debug.Log("Picked Up: " + objectToPickUp.name);
-    objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
     objectWeAreHolding = objectToPickUp;
+    objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
   }
 
   void DropObject() 
@@ -111,6 +111,7 @@ public class PlayerController : MonoBehaviour
       }
     }
 
+    // Update position of object we are holding
     if(objectWeAreHolding != null) {
       objectWeAreHolding.transform.position = transform.position + transform.forward;        
     }

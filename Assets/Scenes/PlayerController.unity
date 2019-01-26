@@ -328,7 +328,7 @@ PrefabInstance:
     - target: {fileID: 3961569857692954238, guid: 54b57b5ea3555fab7a363745911e855e,
         type: 3}
       propertyPath: m_Name
-      value: Pickup Object
+      value: Pickup Object 1
       objectReference: {fileID: 0}
     - target: {fileID: 6416541760577336666, guid: 54b57b5ea3555fab7a363745911e855e,
         type: 3}
@@ -385,6 +385,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8163983955257392376, guid: 54b57b5ea3555fab7a363745911e855e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b57b5ea3555fab7a363745911e855e, type: 3}
 --- !u!1 &1272206489
@@ -434,7 +439,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1.25
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 2
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -791,7 +796,7 @@ PrefabInstance:
     - target: {fileID: 3961569857692954238, guid: 54b57b5ea3555fab7a363745911e855e,
         type: 3}
       propertyPath: m_Name
-      value: Pickup Object
+      value: Pickup Object 2
       objectReference: {fileID: 0}
     - target: {fileID: 6416541760577336666, guid: 54b57b5ea3555fab7a363745911e855e,
         type: 3}
@@ -847,6 +852,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163983955257392376, guid: 54b57b5ea3555fab7a363745911e855e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b57b5ea3555fab7a363745911e855e, type: 3}

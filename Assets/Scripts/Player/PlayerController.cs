@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
   {
     UpdatePlayerPosition();
     CheckPlayerPickupInput();
-    CheckSpeedModifyerKey();
+    CheckSpeedModifierKey();
 
     DrawDebugLines();
   }
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
     objectWeAreHolding = null;
   }
 
-  void CheckSpeedModifyerKey() 
+  void CheckSpeedModifierKey() 
   {
     // If left shift is pressed, set move speed to sprint speed
     if(Input.GetKey(KeyCode.LeftShift))

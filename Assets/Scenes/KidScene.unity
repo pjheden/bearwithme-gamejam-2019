@@ -1894,6 +1894,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &508897819 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7370569671387255353, guid: 1d0cd5811be2c5deb89b0837c915359d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7370569670630918501}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508897817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd7b57c3a566a9069bfa20cea01d442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &515966422 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4781407552922311709, guid: 8c10d6258fde8e04fa31544db0c4c703,
@@ -5307,6 +5319,21 @@ PrefabInstance:
       propertyPath: walkSound
       value: 
       objectReference: {fileID: 8300000, guid: 0535081873e9c804cb3966d686b28a9f, type: 3}
+    - target: {fileID: 4781407552922311707, guid: 8c10d6258fde8e04fa31544db0c4c703,
+        type: 3}
+      propertyPath: collectorHandler
+      value: 
+      objectReference: {fileID: 508897819}
+    - target: {fileID: 4781407552922311707, guid: 8c10d6258fde8e04fa31544db0c4c703,
+        type: 3}
+      propertyPath: pickupDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781407552922311707, guid: 8c10d6258fde8e04fa31544db0c4c703,
+        type: 3}
+      propertyPath: pickupAngle
+      value: 130
+      objectReference: {fileID: 0}
     - target: {fileID: 4781407552922311704, guid: 8c10d6258fde8e04fa31544db0c4c703,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

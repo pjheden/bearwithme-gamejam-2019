@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
     public Text timer;
+    public TextMeshPro lazerTimer;
+
     [SerializeField] private float roundTime;
 
     // Start is called before the first frame update
@@ -36,6 +39,8 @@ public class GameController : MonoBehaviour
 
     private void SetTimeText()
     {
+        lazerTimer.SetText("00:"+ Mathf.Round(roundTime).ToString());
         timer.text = Mathf.Round(roundTime).ToString();
     }
+
 }

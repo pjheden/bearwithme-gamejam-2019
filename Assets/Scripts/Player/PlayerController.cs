@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
   private float verticalMove;
   private GameObject objectWeAreHolding;
   private bool isSitting;
+  private bool isSafe;
 
   void Start()
   {
@@ -239,4 +240,14 @@ private void PlayWalkingSound()
   {
         return isSitting;
   }
+
+   public bool IsSafe()
+   {
+        return isSafe;
+   }
+
+   public void SetIsSafe(bool s)
+   {
+        isSafe = s;
+   }
 }

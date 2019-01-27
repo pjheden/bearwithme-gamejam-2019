@@ -56,7 +56,7 @@ public class AttackState : State
 
             playerThrown = true;
             return;
-        }else if(distance > escapeTreshold)
+        }else if(distance > escapeTreshold || controller.doll.GetComponent<PlayerController>().IsSafe())
         {
             playerThrown = true;
             return;

@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
             CloseDoor();
             if (gameoverTime <= 0.0f)
             {
-                SceneManager.LoadScene("KidScene");
+                SceneManager.LoadScene("TitleMenu");
             }
         }
     }

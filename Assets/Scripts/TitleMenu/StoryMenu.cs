@@ -21,6 +21,6 @@ public class StoryMenu : MonoBehaviour
 
     void NextScene()
     {
-        SceneManager.LoadScene("KidScene");
+        SceneManager.LoadScene("KidScene 1");
     }
 }

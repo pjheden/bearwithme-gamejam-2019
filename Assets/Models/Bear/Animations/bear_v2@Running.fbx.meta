@@ -71,7 +71,7 @@ ModelImporter:
     4300000: Sphere
     4300002: Cube.002
     4300004: Cube.001
-    7400000: mixamo.com
+    7400000: Running
     9500000: //RootNode
     10800000: Lamp
     13700000: Cube.001
@@ -104,7 +104,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Running
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -394,7 +422,7 @@ ModelImporter:
     - name: mixamorig:LeftArm
       parentName: mixamorig:LeftShoulder
       position: {x: 8.881784e-18, y: 0.9294211, z: -2.842171e-16}
-      rotation: {x: -0.013611493, y: -0.6912041, z: 0.103352234, w: 0.71510136}
+      rotation: {x: -0.013611491, y: -0.69120413, z: 0.10335222, w: 0.7151014}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:LeftForeArm
       parentName: mixamorig:LeftArm
@@ -444,7 +472,7 @@ ModelImporter:
     - name: mixamorig:LeftToeBase
       parentName: mixamorig:LeftFoot
       position: {x: -1.4210854e-16, y: 1.0145955, z: 0}
-      rotation: {x: 0.4261687, y: 0.15285423, z: -0.073306695, w: 0.888618}
+      rotation: {x: 0.4261687, y: 0.15285425, z: -0.073306695, w: 0.88861805}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:LeftToe_End
       parentName: mixamorig:LeftToeBase

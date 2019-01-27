@@ -105,16 +105,20 @@ public class PlayerController : MonoBehaviour
     AudioSource audioSource = GetComponent<AudioSource>();
     audioSource.clip = clip;
     audioSource.Play();
-  }
+    anim.SetBool("carry", true);
 
-  void DropObject() 
+    }
+
+    void DropObject() 
   {
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = true;
     collectorHandler.DisableHighlightOnCollector();
     objectWeAreHolding = null;
-  }
+    anim.SetBool("carry", false);
 
-  void CheckSpeedModifierKey() 
+    }
+
+    void CheckSpeedModifierKey() 
   {
     // If left shift is pressed, set move speed to sprint speed
     if(Input.GetKey(KeyCode.LeftShift))
@@ -139,17 +143,29 @@ public class PlayerController : MonoBehaviour
       if (moveDirection != Vector3.zero)
       {
         PlayWalkingSound();
+                DoWalkingAnimation();
         // Creates a rotation with the target forward and up directions
         Quaternion rotation = Quaternion.LookRotation(moveDirection.normalized, Vector3.up);
         // Lerp rotation, from current rotation to target rotation with set speed
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
-      }
-        // Force y position
-        transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
-    }
+            }
+            else
+            {
+                anim.SetBool("running", false);
 
-    // Update position of object we are holding
-    if(objectWeAreHolding != null) {
+            }
+
+            // Force y position
+            transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
+        }
+        else
+        {
+            anim.SetBool("running", false);
+
+        }
+
+        // Update position of object we are holding
+        if (objectWeAreHolding != null) {
       objectWeAreHolding.transform.position = Vector3.Lerp(objectWeAreHolding.transform.position,transform.position + transform.forward, Time.deltaTime * 20); // Lerp object position on pickup        
     }
   }
@@ -168,7 +184,7 @@ private void PlayWalkingSound()
 
     private void DoWalkingAnimation()
     {
-
+        anim.SetBool("running", true);
     }
 
   bool IsObjectInValidAngle(GameObject pickupable) 

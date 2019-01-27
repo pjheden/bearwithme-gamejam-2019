@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StoryScene.unity
     guid: 935d0d6cf6a0b5d4894cfa6a03a26baf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/KidScene.unity
     guid: 1b277402630f0084c9b0d3a5c57a0b19
+  - enabled: 1
+    path: Assets/Scenes/KidScene 1.unity
+    guid: d89e98862a59542cea274eee3a050da5
   m_configObjects: {}

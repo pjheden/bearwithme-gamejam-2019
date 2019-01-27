@@ -39,3 +39,10 @@ sysinfo.txt
 
 #Blender meta files
 *.blend1
+
+# FMOD
+/Assets/FMODStudioCache.asset
+/Assets/FMODStudioCache.asset.meta
+fmod.log
+fmod_editor.log
+*.meta

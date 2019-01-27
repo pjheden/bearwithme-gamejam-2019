@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
   public AudioClip[] pickupSounds;
   public AudioClip walkSound;
 
+    [Header("Animator")]
+    public Animator anim;
+
   private float speed;
   private GameObject[] pickupObjects;
   private Vector3 moveDirection = Vector3.zero;
@@ -162,6 +165,11 @@ private void PlayWalkingSound()
     }
 
 }
+
+    private void DoWalkingAnimation()
+    {
+
+    }
 
   bool IsObjectInValidAngle(GameObject pickupable) 
   {

@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
   private float horizontalMove;
   private float verticalMove;
   private GameObject objectWeAreHolding;
+  private bool isSitting;
 
   void Start()
   {
@@ -100,7 +101,9 @@ public class PlayerController : MonoBehaviour
   {
     objectWeAreHolding = objectToPickUp;
     collectorHandler.HighLightCorrectCollector(objectToPickUp.GetComponent<ObjectToCollect>().dropOffLocation);
-    objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
+
+    // objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
+
     // Attach picked up object to player hand
     objectWeAreHolding.transform.parent = playerHand.transform;
     objectWeAreHolding.transform.position = playerHand.transform.position;
@@ -115,9 +118,10 @@ public class PlayerController : MonoBehaviour
 
   }
 
+
   void DropObject()
   {
-    objectWeAreHolding.GetComponent<BoxCollider>().enabled = true;
+    //objectWeAreHolding.GetComponent<BoxCollider>().enabled = true;
     collectorHandler.DisableHighlightOnCollector();
     objectWeAreHolding.transform.parent = pickupObjectsParent.transform;
 
@@ -155,16 +159,16 @@ public class PlayerController : MonoBehaviour
       if (moveDirection != Vector3.zero)
       {
         PlayWalkingSound();
-        DoWalkingAnimation();
+        DoWalkingAnimation(true);
         // Creates a rotation with the target forward and up directions
         Quaternion rotation = Quaternion.LookRotation(moveDirection.normalized, Vector3.up);
         // Lerp rotation, from current rotation to target rotation with set speed
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+
       }
       else
       {
-        anim.SetBool("running", false);
-
+        DoWalkingAnimation(false);
       }
 
       // Force y position
@@ -172,15 +176,14 @@ public class PlayerController : MonoBehaviour
     }
     else
     {
-      anim.SetBool("running", false);
-
+      DoWalkingAnimation(false);
     }
 
     // Update position of object we are holding
-    if (objectWeAreHolding != null)
-    {
-      //   objectWeAreHolding.transform.position = Vector3.Lerp(objectWeAreHolding.transform.position, transform.position + transform.forward, Time.deltaTime * 20); // Lerp object position on pickup        
-    }
+    // if (objectWeAreHolding != null)
+    // {
+    //   objectWeAreHolding.transform.position = Vector3.Lerp(objectWeAreHolding.transform.position, transform.position + transform.forward * 2, Time.deltaTime * 20); // Lerp object position on pickup        
+    // }
   }
 
   private void PlayWalkingSound()
@@ -195,9 +198,19 @@ public class PlayerController : MonoBehaviour
 
   }
 
-  private void DoWalkingAnimation()
+
+  private void DoWalkingAnimation(bool run)
   {
-    anim.SetBool("running", true);
+    if (run)
+    {
+      anim.SetBool("running", true);
+      isSitting = false;
+    }
+    else
+    {
+      anim.SetBool("running", false);
+      isSitting = true;
+    }
   }
 
   bool IsObjectInValidAngle(GameObject pickupable)
@@ -242,7 +255,6 @@ public class PlayerController : MonoBehaviour
     }
   }
 
-
   IEnumerator MoveToPosition(Vector3 newPosition, GameObject objectToMove, float time)
   {
     float elapsedTime = 0;
@@ -254,5 +266,10 @@ public class PlayerController : MonoBehaviour
       elapsedTime += Time.deltaTime;
       yield return null;
     }
+  }
+  
+  public bool IsSitting()
+  {
+    return isSitting;
   }
 }

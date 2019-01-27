@@ -68,7 +68,7 @@ public class IdleState : State
         }
     }
 
-    private void DoRayCasts(Transform kidTransform)
+    private void DoRayCasts(FiniteStateMachine controller, Transform kidTransform)
     {
         //Collect points for drawing mesh
         List<Vector3> vertices = new List<Vector3>();
@@ -82,7 +82,7 @@ public class IdleState : State
             float currentAngle = -visionSpread / 2.0f + angleStep * i;
             Vector3 positiveTarget = new Vector3(Mathf.Sin(currentAngle), 0, Mathf.Cos(currentAngle));
 
-            CastRay(kidTransform, kidTransform.position, positiveTarget, vertices);
+            CastRay(controller, kidTransform, kidTransform.position, positiveTarget, vertices);
 
             if (i > 0)
             {
@@ -103,7 +103,7 @@ public class IdleState : State
         Graphics.DrawMesh(m, Vector3.zero, Quaternion.identity, visionMaterial, 0, null, 0, null, false, false, true);
     }
 
-    private void CastRay(Transform kidTransform, Vector3 start, Vector3 end, List<Vector3> vertices)
+    private void CastRay(FiniteStateMachine controller, Transform kidTransform, Vector3 start, Vector3 end, List<Vector3> vertices)
     {
         int layerMask = 1 << 2;
         layerMask = ~layerMask;
@@ -116,7 +116,7 @@ public class IdleState : State
             Debug.DrawRay(start, sightVector * hit.distance, Color.yellow);
             if (hit.collider.gameObject.tag == "Player")
             {
-                playerSpotted = true;
+                playerSpotted = !controller.doll.GetComponent<PlayerController>().IsSitting();
             }
             vertices.Add(start + sightVector * hit.distance);
         }
@@ -135,7 +135,7 @@ public class IdleState : State
         Transform kidTransform = controller.kid.transform;
 
         // Check raycasts
-        DoRayCasts(kidTransform);
+        DoRayCasts(controller, kidTransform);
     }   
 
     private void ResetValues()

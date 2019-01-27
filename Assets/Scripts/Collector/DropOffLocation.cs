@@ -8,6 +8,7 @@ public class DropOffLocation : MonoBehaviour
     public CollectorHandler collectorHandler;
     public CollectorTypes collectorType;
     public float deniedDistance;
+    public GameObject pickupables;
 
     [HideInInspector]
     public Outline outline;
@@ -39,6 +40,7 @@ public class DropOffLocation : MonoBehaviour
     {
         // If wrong location
         if(item.GetComponent<ObjectToCollect>().dropOffLocation != collectorType){
+            item.transform.parent = pickupables.transform;
             MoveObjectOutOfCollector(item);
             return false;
         }

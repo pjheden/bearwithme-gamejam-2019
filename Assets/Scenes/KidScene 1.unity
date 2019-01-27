@@ -5539,7 +5539,7 @@ PrefabInstance:
         type: 3}
       propertyPath: walkSound
       value: 
-      objectReference: {fileID: 8300000, guid: 0535081873e9c804cb3966d686b28a9f, type: 3}
+      objectReference: {fileID: 8300000, guid: 752c3958cfeee104888a06277b6823dc, type: 3}
     - target: {fileID: 4781407552922311707, guid: 8c10d6258fde8e04fa31544db0c4c703,
         type: 3}
       propertyPath: collectorHandler
@@ -7190,7 +7190,7 @@ PrefabInstance:
         type: 3}
       propertyPath: walkClip
       value: 
-      objectReference: {fileID: 8300000, guid: c61b26e3269f12a4b962177ba51385cc, type: 3}
+      objectReference: {fileID: 8300000, guid: 0352ca774e35b244db28f240fdbc165a, type: 3}
     - target: {fileID: 7888994335870961662, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
         type: 3}
       propertyPath: audioSource
@@ -7220,17 +7220,17 @@ PrefabInstance:
         type: 3}
       propertyPath: enterBedClip
       value: 
-      objectReference: {fileID: 8300000, guid: 9d1e6443439988642997934a510e5796, type: 3}
+      objectReference: {fileID: 8300000, guid: b9d08f7afd71e584d92dee15539c117c, type: 3}
     - target: {fileID: 7888994335870961661, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
         type: 3}
       propertyPath: leaveBedClip
       value: 
-      objectReference: {fileID: 8300000, guid: 3a2a2f47e58ec4946ab149bc2f3c8e36, type: 3}
+      objectReference: {fileID: 8300000, guid: 6da249d0bd752c04c8c2a87e86c6cb5b, type: 3}
     - target: {fileID: 7888994335870961661, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
         type: 3}
       propertyPath: walkClip
       value: 
-      objectReference: {fileID: 8300000, guid: c61b26e3269f12a4b962177ba51385cc, type: 3}
+      objectReference: {fileID: 8300000, guid: 0352ca774e35b244db28f240fdbc165a, type: 3}
     - target: {fileID: 7888994335870961661, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
         type: 3}
       propertyPath: anim
@@ -7240,7 +7240,7 @@ PrefabInstance:
         type: 3}
       propertyPath: walkClip
       value: 
-      objectReference: {fileID: 8300000, guid: c61b26e3269f12a4b962177ba51385cc, type: 3}
+      objectReference: {fileID: 8300000, guid: 0352ca774e35b244db28f240fdbc165a, type: 3}
     - target: {fileID: 7888994335870961658, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
         type: 3}
       propertyPath: audioSource
@@ -7310,7 +7310,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2ab0dd787fc681440aba8d9ffdba846e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 611d04411e3159044a7fe7b347db2780, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.8
   m_Pitch: 1

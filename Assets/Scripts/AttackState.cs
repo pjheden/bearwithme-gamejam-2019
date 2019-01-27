@@ -52,7 +52,7 @@ public class AttackState : State
             // pick up doll
             controller.doll.transform.position = new Vector3(0, 1, 0);
             // Add time punishment
-            controller.gameController.AddTime(-5.0f);
+            controller.gameController.AddTime(-10.0f);
 
             playerThrown = true;
             return;

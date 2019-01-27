@@ -7906,7 +7906,7 @@ PrefabInstance:
     - target: {fileID: 7888994335870961662, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
         type: 3}
       propertyPath: idleChance
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7888994335870961661, guid: 163d85afeb6c5ff41b4b0e9830d417c7,
         type: 3}
@@ -8005,7 +8005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lazerTimer: {fileID: 1195944118}
   door: {fileID: 62371852}
-  roundTime: 45
+  roundTime: 40
   gameoverTime: 5
 --- !u!82 &7888994337795772337
 AudioSource:

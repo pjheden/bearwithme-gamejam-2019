@@ -8,6 +8,8 @@ public class SleepState : State
     private bool sleeping;
     private float sleepTime;
     private bool inBed;
+    public Animator anim;
+
     [SerializeField] private float maxSleep;
     [SerializeField] private GameObject bed;
     [SerializeField] private float radiusTreshold;
@@ -31,6 +33,7 @@ public class SleepState : State
         {
             ResetValues();
             PatrolState state = GetComponent<PatrolState>();
+            state.StartAnimation();
             controller.TransitionToState(state);
         }
     }
@@ -39,7 +42,11 @@ public class SleepState : State
     {
         if (inBed)
         {
+            anim.SetBool("patrolling", false);
+            anim.SetBool("sleeping", true);
             //if in bed, sleep
+            // MAke sure we have the right rotation in bed
+            controller.kid.transform.rotation = Quaternion.Euler(new Vector3(bed.transform.rotation.x, 220.0f, bed.transform.rotation.z));
             sleepTime += Time.deltaTime;
             if (sleepTime > maxSleep)
             {
@@ -80,6 +87,13 @@ public class SleepState : State
     {
         sleeping = true;
         inBed = false;
+        anim.SetBool("patrolling", false);
+        anim.SetBool("sleeping", false);
+    }
+
+    public void StartAnimation()
+    {
+        anim.SetBool("patrolling", true);
     }
 
     public override string GetStateName()

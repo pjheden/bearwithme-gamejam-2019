@@ -6,6 +6,8 @@ using UnityEngine;
 public class PatrolState : State
 {
     public GameObject waypointContainer;
+    public Animator anim;
+
     private List<Transform> waypoints;
     private bool playerSpotted;
 
@@ -32,6 +34,7 @@ public class PatrolState : State
         {
             waypoints.Add(waypointContainer.transform.GetChild(i));
         }
+        StartAnimation();
     }
 
     protected override void DoActions(FiniteStateMachine controller)
@@ -74,6 +77,7 @@ public class PatrolState : State
         {
             ResetValues();
             AttackState state = GetComponent<AttackState>();
+            state.StartAnimation();
             controller.TransitionToState(state);
             return;
         }
@@ -83,6 +87,7 @@ public class PatrolState : State
             ResetValues();
             audioSource.Stop();
             IdleState state = GetComponent<IdleState>();
+            state.StartAnimation();
             controller.TransitionToState(state);
             return;
         }
@@ -153,6 +158,12 @@ public class PatrolState : State
     {
         playerSpotted = false;
         shouldIdle = false;
+        anim.SetBool("patrolling", false);
+    }
+
+    public void StartAnimation()
+    {
+        anim.SetBool("patrolling", true);
     }
 
     public override string GetStateName()

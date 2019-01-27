@@ -17,6 +17,8 @@ public class IdleState : State
     private bool playerSpotted;
     [SerializeField] private Material visionMaterial;
 
+    public Animator anim;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,7 @@ public class IdleState : State
         {
             ResetValues();
             AttackState state = GetComponent<AttackState>();
+            state.StartAnimation();
             controller.TransitionToState(state);
             return;
         }
@@ -43,7 +46,9 @@ public class IdleState : State
         if (idleTimer > maxIdleTime)
         {
             ResetValues();
-            controller.TransitionToState(nextState);
+            PatrolState state = GetComponent<PatrolState>();
+            state.StartAnimation();
+            controller.TransitionToState(state);
             return;
         }
 
@@ -57,6 +62,7 @@ public class IdleState : State
         {
             ResetValues();
             AttackState state = GetComponent<AttackState>();
+            state.StartAnimation();
             controller.TransitionToState(state);
             return;
         }
@@ -136,6 +142,7 @@ public class IdleState : State
     {
         idleTimer = 0.0f;
         playerSpotted = false;
+        anim.SetBool("idle", false);
     }
 
     public void SetNextState(State state)
@@ -146,6 +153,11 @@ public class IdleState : State
     public override string GetStateName()
     {
         return "IdleState";
+    }
+
+    public void StartAnimation()
+    {
+        anim.SetBool("idle", true);
     }
 
 }

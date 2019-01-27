@@ -13,6 +13,8 @@ public class AttackState : State
     [SerializeField] private float radiusTreshold;
     [SerializeField] private float escapeTreshold;
     [SerializeField] private float moveSpeed;
+    public Animator anim;
+
     [Header("Sounds")]
     public AudioClip walkClip;
     public AudioSource audioSource;
@@ -33,6 +35,7 @@ public class AttackState : State
             //controller.TransitionToState(state);
 
             SleepState state = GetComponent<SleepState>();
+            state.StartAnimation();
             controller.TransitionToState(state);
         }
     }
@@ -74,6 +77,12 @@ public class AttackState : State
     private void ResetValues()
     {
         playerThrown = false;
+        anim.SetBool("attacking", false);
+    }
+
+    public void StartAnimation()
+    {
+        anim.SetBool("attacking", true);
     }
 
     public override string GetStateName()

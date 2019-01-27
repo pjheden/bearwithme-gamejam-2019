@@ -72,12 +72,14 @@ public class GameController : MonoBehaviour
 
     public void AddTime(float time)
     {
-        roundTime += time;
+        if(!gameOver)
+            roundTime += time;
     }
 
     public void AddScore(float scr)
     {
-        score += scr;
+        if (!gameOver)
+            score += scr;
     }
 
     private void SetGameOverText(bool win)

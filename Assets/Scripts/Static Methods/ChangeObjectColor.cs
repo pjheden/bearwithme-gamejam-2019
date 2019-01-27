@@ -39,6 +39,9 @@ public static class ColorChanger
             case CollectorTypes.DRAWER:
                 objectColor = Color.red;
             break;
+            case CollectorTypes.TRASHBIN:
+                objectColor = Color.cyan;
+            break;
             default:
                 objectColor = Color.white;
             break;

@@ -20,12 +20,13 @@ public class PlayerController : MonoBehaviour
   public float pickupDistance = 1f;
   public GameObject pickupObjectsParent;
   public CollectorHandler collectorHandler;
+  public GameObject playerHand;
   [Header("Sounds")]
   public AudioClip[] pickupSounds;
   public AudioClip walkSound;
 
-    [Header("Animator")]
-    public Animator anim;
+  [Header("Animator")]
+  public Animator anim;
 
   private float speed;
   private GameObject[] pickupObjects;
@@ -59,36 +60,38 @@ public class PlayerController : MonoBehaviour
     DrawDebugLines();
   }
 
-  void CheckPlayerPickupInput() 
+  void CheckPlayerPickupInput()
   {
-    if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
-        {
-      if(objectWeAreHolding == null)
+    if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
+    {
+      if (objectWeAreHolding == null)
         TryToPickupObject();
-      else 
+      else
         DropObject();
     }
   }
 
-  void TryToPickupObject() 
+  void TryToPickupObject()
   {
     // Go through all objects, pickup the closes one that is in valid region
     // If we are already holding an object drop it
     int closestObjectIndex = 0;
     bool canWePickupAnything = false;
-    for(int i = 0; i < pickupObjects.Length; i++) 
+    for (int i = 0; i < pickupObjects.Length; i++)
     {
-      GameObject objectToCheck = pickupObjects[i];  
-      if(IsObjectInValidAngle(objectToCheck) && IsObjectInValidDistance(objectToCheck))
+      GameObject objectToCheck = pickupObjects[i];
+      if (IsObjectInValidAngle(objectToCheck) && IsObjectInValidDistance(objectToCheck))
       {
         canWePickupAnything = true;
-        if(DistanceToObject(objectToCheck) <= DistanceToObject(pickupObjects[closestObjectIndex])){
+        if (DistanceToObject(objectToCheck) <= DistanceToObject(pickupObjects[closestObjectIndex]))
+        {
           closestObjectIndex = i;
         }
       }
     }
 
-    if(canWePickupAnything) {
+    if (canWePickupAnything)
+    {
       PickupObject(pickupObjects[closestObjectIndex]);
     }
   }
@@ -98,8 +101,11 @@ public class PlayerController : MonoBehaviour
     objectWeAreHolding = objectToPickUp;
     collectorHandler.HighLightCorrectCollector(objectToPickUp.GetComponent<ObjectToCollect>().dropOffLocation);
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
+    // Attach picked up object to player hand
+    objectWeAreHolding.transform.parent = playerHand.transform;
+    objectWeAreHolding.transform.position = playerHand.transform.position;
     // Get rand clip
-    int randIndex = Mathf.RoundToInt( Random.Range(0, pickupSounds.Length) );
+    int randIndex = Mathf.RoundToInt(Random.Range(0, pickupSounds.Length));
     AudioClip clip = pickupSounds[randIndex];
     // Play clip
     AudioSource audioSource = GetComponent<AudioSource>();
@@ -107,21 +113,27 @@ public class PlayerController : MonoBehaviour
     audioSource.Play();
     anim.SetBool("carry", true);
 
-    }
+  }
 
-    void DropObject() 
+  void DropObject()
   {
     objectWeAreHolding.GetComponent<BoxCollider>().enabled = true;
     collectorHandler.DisableHighlightOnCollector();
+    objectWeAreHolding.transform.parent = pickupObjectsParent.transform;
+
+    // Set position of dropped object (didn't get lerp to work)
+    Vector3 dropToThisLocation = new Vector3(objectWeAreHolding.transform.position.x, 1.0f, objectWeAreHolding.transform.position.z);
+    objectWeAreHolding.transform.position = dropToThisLocation;
+
     objectWeAreHolding = null;
+
     anim.SetBool("carry", false);
+  }
 
-    }
-
-    void CheckSpeedModifierKey() 
+  void CheckSpeedModifierKey()
   {
     // If left shift is pressed, set move speed to sprint speed
-    if(Input.GetKey(KeyCode.LeftShift))
+    if (Input.GetKey(KeyCode.LeftShift))
       speed = sprintSpeed;
     else
       speed = defaultSpeed;
@@ -143,65 +155,68 @@ public class PlayerController : MonoBehaviour
       if (moveDirection != Vector3.zero)
       {
         PlayWalkingSound();
-                DoWalkingAnimation();
+        DoWalkingAnimation();
         // Creates a rotation with the target forward and up directions
         Quaternion rotation = Quaternion.LookRotation(moveDirection.normalized, Vector3.up);
         // Lerp rotation, from current rotation to target rotation with set speed
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
-            }
-            else
-            {
-                anim.SetBool("running", false);
+      }
+      else
+      {
+        anim.SetBool("running", false);
 
-            }
+      }
 
-            // Force y position
-            transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
-        }
-        else
-        {
-            anim.SetBool("running", false);
+      // Force y position
+      transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
+    }
+    else
+    {
+      anim.SetBool("running", false);
 
-        }
+    }
 
-        // Update position of object we are holding
-        if (objectWeAreHolding != null) {
-      objectWeAreHolding.transform.position = Vector3.Lerp(objectWeAreHolding.transform.position,transform.position + transform.forward, Time.deltaTime * 20); // Lerp object position on pickup        
+    // Update position of object we are holding
+    if (objectWeAreHolding != null)
+    {
+      //   objectWeAreHolding.transform.position = Vector3.Lerp(objectWeAreHolding.transform.position, transform.position + transform.forward, Time.deltaTime * 20); // Lerp object position on pickup        
     }
   }
 
-private void PlayWalkingSound()
-{
+  private void PlayWalkingSound()
+  {
     // Play clip
     AudioSource audioSource = GetComponent<AudioSource>();
     if (!audioSource.isPlaying)
     {
-        audioSource.clip = walkSound;
-        audioSource.Play();
+      audioSource.clip = walkSound;
+      audioSource.Play();
     }
 
-}
-
-    private void DoWalkingAnimation()
-    {
-        anim.SetBool("running", true);
-    }
-
-  bool IsObjectInValidAngle(GameObject pickupable) 
-  {
-      Vector3 toObject = (pickupable.transform.position - transform.position);
-      float pickupAngleThreshold = Mathf.Sin(pickupAngle / 2);
-      float angleToObject = Vector3.Angle(transform.forward, toObject.normalized) * Mathf.PI / 180;
-      return angleToObject <= pickupAngle / 2;
   }
 
-  bool IsObjectInValidDistance(GameObject pickupable) {
+  private void DoWalkingAnimation()
+  {
+    anim.SetBool("running", true);
+  }
+
+  bool IsObjectInValidAngle(GameObject pickupable)
+  {
+    Vector3 toObject = (pickupable.transform.position - transform.position);
+    float pickupAngleThreshold = Mathf.Sin(pickupAngle / 2);
+    float angleToObject = Vector3.Angle(transform.forward, toObject.normalized) * Mathf.PI / 180;
+    return angleToObject <= pickupAngle / 2;
+  }
+
+  bool IsObjectInValidDistance(GameObject pickupable)
+  {
     Vector3 toObject = (pickupable.transform.position - transform.position);
     float distanceToObject = toObject.magnitude;
     return distanceToObject <= pickupDistance;
   }
 
-  float DistanceToObject(GameObject pickupable) {
+  float DistanceToObject(GameObject pickupable)
+  {
     Vector3 toObject = (pickupable.transform.position - transform.position);
     return toObject.magnitude;
   }
@@ -213,7 +228,7 @@ private void PlayWalkingSound()
 
     leftBound = transform.TransformDirection(leftBound);
     rightBound = transform.TransformDirection(rightBound);
-    
+
     Debug.DrawRay(transform.position, leftBound * pickupDistance, Color.cyan);
     Debug.DrawRay(transform.position, rightBound * pickupDistance, Color.cyan);
 
@@ -224,6 +239,20 @@ private void PlayWalkingSound()
         Debug.DrawLine(transform.position, pickupable.transform.position, Color.green);
       else
         Debug.DrawLine(transform.position, pickupable.transform.position, Color.red);
+    }
+  }
+
+
+  IEnumerator MoveToPosition(Vector3 newPosition, GameObject objectToMove, float time)
+  {
+    float elapsedTime = 0;
+    Vector3 startingPos = transform.position;
+    while (elapsedTime < time)
+    {
+      objectToMove.transform.position = Vector3.Lerp(objectToMove.transform.position, newPosition, (elapsedTime / time));
+      objectToMove.transform.position = new Vector3(objectToMove.transform.position.x, 1, objectToMove.transform.position.z);
+      elapsedTime += Time.deltaTime;
+      yield return null;
     }
   }
 }

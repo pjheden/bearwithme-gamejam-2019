@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
   private float horizontalMove;
   private float verticalMove;
   private GameObject objectWeAreHolding;
+  private bool isSitting;
 
   void Start()
   {
@@ -143,25 +144,23 @@ public class PlayerController : MonoBehaviour
       if (moveDirection != Vector3.zero)
       {
         PlayWalkingSound();
-                DoWalkingAnimation();
+        DoWalkingAnimation(true);
         // Creates a rotation with the target forward and up directions
         Quaternion rotation = Quaternion.LookRotation(moveDirection.normalized, Vector3.up);
         // Lerp rotation, from current rotation to target rotation with set speed
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
-            }
-            else
-            {
-                anim.SetBool("running", false);
-
-            }
-
-            // Force y position
-            transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
         }
         else
         {
-            anim.SetBool("running", false);
+            DoWalkingAnimation(false);
+        }
 
+        // Force y position
+        transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
+        }
+        else
+        {
+            DoWalkingAnimation(false);
         }
 
         // Update position of object we are holding
@@ -182,9 +181,18 @@ private void PlayWalkingSound()
 
 }
 
-    private void DoWalkingAnimation()
+    private void DoWalkingAnimation(bool run)
     {
-        anim.SetBool("running", true);
+        if (run)
+        {    
+            anim.SetBool("running", true);
+            isSitting = false;
+        }
+        else
+        {
+            anim.SetBool("running", false);
+            isSitting = true;
+        }
     }
 
   bool IsObjectInValidAngle(GameObject pickupable) 
@@ -225,5 +233,10 @@ private void PlayWalkingSound()
       else
         Debug.DrawLine(transform.position, pickupable.transform.position, Color.red);
     }
+  }
+
+  public bool IsSitting()
+  {
+        return isSitting;
   }
 }

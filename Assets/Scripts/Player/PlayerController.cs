@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
   {
     objectWeAreHolding = objectToPickUp;
     collectorHandler.HighLightCorrectCollector(objectToPickUp.GetComponent<ObjectToCollect>().dropOffLocation);
-    objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
+    //objectWeAreHolding.GetComponent<BoxCollider>().enabled = false;
     // Get rand clip
     int randIndex = Mathf.RoundToInt( Random.Range(0, pickupSounds.Length) );
     AudioClip clip = pickupSounds[randIndex];
@@ -111,8 +111,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void DropObject() 
-  {
-    objectWeAreHolding.GetComponent<BoxCollider>().enabled = true;
+    {
+    //objectWeAreHolding.GetComponent<BoxCollider>().enabled = true;
     collectorHandler.DisableHighlightOnCollector();
     objectWeAreHolding = null;
     anim.SetBool("carry", false);
@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
 
         // Update position of object we are holding
         if (objectWeAreHolding != null) {
-      objectWeAreHolding.transform.position = Vector3.Lerp(objectWeAreHolding.transform.position,transform.position + transform.forward, Time.deltaTime * 20); // Lerp object position on pickup        
+      objectWeAreHolding.transform.position = Vector3.Lerp(objectWeAreHolding.transform.position,transform.position + transform.forward*2, Time.deltaTime * 20); // Lerp object position on pickup        
     }
   }
 

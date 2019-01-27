@@ -19,6 +19,7 @@ public class DropOffLocation : MonoBehaviour
         outline.OutlineColor = ColorChanger.GetTypeColor(collectorType);
         outline.OutlineWidth = 10f;
         outline.enabled = false;
+        outline.OutlineMode = Outline.Mode.OutlineVisible; // Prevents outline from drawig over objects infront
         // ColorChanger.ChangeObjectCorToMatchType(transform.gameObject, collectorType);
     }
 

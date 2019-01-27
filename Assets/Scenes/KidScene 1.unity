@@ -8604,6 +8604,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lazerTimer: {fileID: 1195944118}
   door: {fileID: 62371852}
+  mainSound: {fileID: 7888994337795772338}
+  loseSound: {fileID: 8300000, guid: 872c06f8b97948844bff2b0470dfbc24, type: 3}
+  winSound: {fileID: 8300000, guid: 4763da6ee05b42d4695806534b0ae2bc, type: 3}
   roundTime: 40
   gameoverTime: 5
 --- !u!82 &7888994337795772337

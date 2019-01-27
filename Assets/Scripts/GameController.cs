@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour
     public GameObject door;
     private Quaternion startDoorPos;
     private float doorCloseness;
+    public AudioSource mainSound;
+    public AudioClip loseSound;
+    public AudioClip winSound;
 
     [SerializeField] private float roundTime;
     [SerializeField] private float gameoverTime;
@@ -38,10 +41,24 @@ public class GameController : MonoBehaviour
             SetTimeText();
         }
 
+        if (roundTime<=0.0f)
+        {
+            gameOver = true;
+        }
+
         if (roundTime <= 0.0f || (isWin && !gameOver))
         {
             //Gameover
-            gameOver = true;
+            if (gameOver)
+            {
+                mainSound.clip = loseSound;
+            }
+            else
+            {
+                mainSound.clip = winSound;
+            }
+            mainSound.loop = true;
+            mainSound.Play();
             gameoverTime -= Time.deltaTime;
             SetGameOverText(isWin);
             //Close the door

@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectedText: {fileID: 0}
+  bonusDeliverTime: 0
+  gameController: {fileID: 0}
 --- !u!1001 &1735338409627137199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54,11 +56,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7370569671387255358}
     m_Modifications:
-    - target: {fileID: 9105344987947666414, guid: cbdd53ae36a25facda379f7feb04a8ae,
-        type: 3}
-      propertyPath: m_Name
-      value: Closet
-      objectReference: {fileID: 0}
     - target: {fileID: 9105344987947666415, guid: cbdd53ae36a25facda379f7feb04a8ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -129,6 +126,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 9105344987947666414, guid: cbdd53ae36a25facda379f7feb04a8ae,
+        type: 3}
+      propertyPath: m_Name
+      value: Closet
+      objectReference: {fileID: 0}
     - target: {fileID: 9105344987947666403, guid: cbdd53ae36a25facda379f7feb04a8ae,
         type: 3}
       propertyPath: collectorHandler
@@ -149,11 +151,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7370569671387255358}
     m_Modifications:
-    - target: {fileID: 9105344987947666414, guid: cbdd53ae36a25facda379f7feb04a8ae,
-        type: 3}
-      propertyPath: m_Name
-      value: Closet 2
-      objectReference: {fileID: 0}
     - target: {fileID: 9105344987947666415, guid: cbdd53ae36a25facda379f7feb04a8ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -224,6 +221,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 9105344987947666414, guid: cbdd53ae36a25facda379f7feb04a8ae,
+        type: 3}
+      propertyPath: m_Name
+      value: Closet 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9105344987947666403, guid: cbdd53ae36a25facda379f7feb04a8ae,
         type: 3}
       propertyPath: collectorHandler
@@ -244,11 +246,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7370569671387255358}
     m_Modifications:
-    - target: {fileID: 9105344987947666414, guid: cbdd53ae36a25facda379f7feb04a8ae,
-        type: 3}
-      propertyPath: m_Name
-      value: Closet 3
-      objectReference: {fileID: 0}
     - target: {fileID: 9105344987947666415, guid: cbdd53ae36a25facda379f7feb04a8ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -319,12 +316,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 9105344987947666414, guid: cbdd53ae36a25facda379f7feb04a8ae,
+        type: 3}
+      propertyPath: m_Name
+      value: Closet 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9105344987947666403, guid: cbdd53ae36a25facda379f7feb04a8ae,
         type: 3}
       propertyPath: collectorHandler
       value: 
       objectReference: {fileID: 7370569671387255353}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9105344987947666402, guid: cbdd53ae36a25facda379f7feb04a8ae, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cbdd53ae36a25facda379f7feb04a8ae, type: 3}
 --- !u!4 &1735338409623360417 stripped
 Transform:

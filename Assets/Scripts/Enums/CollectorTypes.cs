@@ -6,5 +6,6 @@ public enum CollectorTypes
 {
   BOOKSHELF,
   CLOSET,
-  DRAWER
+  DRAWER,
+  TRASHBIN
 }

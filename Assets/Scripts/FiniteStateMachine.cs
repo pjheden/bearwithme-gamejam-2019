@@ -34,6 +34,6 @@ public class FiniteStateMachine : MonoBehaviour
     // Debug function for Kid
     void OnGUI()
     {
-        GUI.Label(new Rect(0, 0, 100.0f, 100.0f), "Kid State: " + currentState.GetStateName());
+        //GUI.Label(new Rect(0, 0, 100.0f, 100.0f), "Kid State: " + currentState.GetStateName());
     }
 }

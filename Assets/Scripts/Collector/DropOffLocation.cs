@@ -8,6 +8,7 @@ public class DropOffLocation : MonoBehaviour
     public CollectorHandler collectorHandler;
     public CollectorTypes collectorType;
     public float deniedDistance;
+    public PlayerController playerController;
 
     [HideInInspector]
     public Outline outline;
@@ -31,6 +32,8 @@ public class DropOffLocation : MonoBehaviour
         {   
             if(IsInCorrectDropOff(other.gameObject)){
                 collectorHandler.AddItemToCollectedObjects(other.gameObject);
+                playerController.SetObjectHoldingNull();
+                outline.enabled = false;
             }
         }
     }
@@ -39,7 +42,6 @@ public class DropOffLocation : MonoBehaviour
     {
         // If wrong location
         if(item.GetComponent<ObjectToCollect>().dropOffLocation != collectorType){
-            MoveObjectOutOfCollector(item);
             return false;
         }
         return true;

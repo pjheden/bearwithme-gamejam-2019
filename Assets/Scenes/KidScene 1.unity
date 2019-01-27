@@ -1538,7 +1538,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5806661, y: 1.1793712, z: 0.786249}
+  m_Size: {x: 1, y: 1.1793712, z: 0.786249}
   m_Center: {x: 0.036414005, y: -0.06539848, z: -0.1152345}
 --- !u!1001 &388728400
 PrefabInstance:
@@ -2158,6 +2158,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &515966425 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4781407552922311707, guid: 8c10d6258fde8e04fa31544db0c4c703,
+    type: 3}
+  m_PrefabInstance: {fileID: 1585395724}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515966422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3cd8476acd137fa8e61faced5896d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &515966426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4781407552922311706, guid: 8c10d6258fde8e04fa31544db0c4c703,
@@ -3583,6 +3595,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b57b5ea3555fab7a363745911e855e, type: 3}
+--- !u!1 &1066640034 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100042, guid: abe9db15c03eb4007b0c81dbabe8881e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1152783917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1069040120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1597148684996925639, guid: 51026c463eed2f240a142b35e95c9d2f,
@@ -5737,6 +5755,11 @@ PrefabInstance:
       propertyPath: sprintSpeed
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4781407552922311707, guid: 8c10d6258fde8e04fa31544db0c4c703,
+        type: 3}
+      propertyPath: playerHand
+      value: 
+      objectReference: {fileID: 1066640034}
     - target: {fileID: 4781407552922311704, guid: 8c10d6258fde8e04fa31544db0c4c703,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7161,6 +7184,16 @@ PrefabInstance:
       propertyPath: deniedDistance
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7370569672253226828, guid: 1d0cd5811be2c5deb89b0837c915359d,
+        type: 3}
+      propertyPath: pickupables
+      value: 
+      objectReference: {fileID: 1243230409}
+    - target: {fileID: 7370569672253226828, guid: 1d0cd5811be2c5deb89b0837c915359d,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 515966425}
     - target: {fileID: 1735338409623360429, guid: 1d0cd5811be2c5deb89b0837c915359d,
         type: 3}
       propertyPath: collectorType
@@ -7169,8 +7202,18 @@ PrefabInstance:
     - target: {fileID: 1735338409623360429, guid: 1d0cd5811be2c5deb89b0837c915359d,
         type: 3}
       propertyPath: deniedDistance
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1735338409623360429, guid: 1d0cd5811be2c5deb89b0837c915359d,
+        type: 3}
+      propertyPath: pickupables
+      value: 
+      objectReference: {fileID: 1243230409}
+    - target: {fileID: 1735338409623360429, guid: 1d0cd5811be2c5deb89b0837c915359d,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 515966425}
     - target: {fileID: 1735338408315736556, guid: 1d0cd5811be2c5deb89b0837c915359d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7181,6 +7224,16 @@ PrefabInstance:
       propertyPath: deniedDistance
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1735338408315736546, guid: 1d0cd5811be2c5deb89b0837c915359d,
+        type: 3}
+      propertyPath: pickupables
+      value: 
+      objectReference: {fileID: 1243230409}
+    - target: {fileID: 1735338408315736546, guid: 1d0cd5811be2c5deb89b0837c915359d,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 515966425}
     - target: {fileID: 1735338408315736557, guid: 1d0cd5811be2c5deb89b0837c915359d,
         type: 3}
       propertyPath: m_Size.x
@@ -7199,7 +7252,7 @@ PrefabInstance:
     - target: {fileID: 1735338408315736544, guid: 1d0cd5811be2c5deb89b0837c915359d,
         type: 3}
       propertyPath: m_Size.x
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1735338408315736544, guid: 1d0cd5811be2c5deb89b0837c915359d,
         type: 3}
@@ -7264,7 +7317,7 @@ PrefabInstance:
     - target: {fileID: 7370569672253226830, guid: 1d0cd5811be2c5deb89b0837c915359d,
         type: 3}
       propertyPath: m_Size.z
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1735338409623360418, guid: 1d0cd5811be2c5deb89b0837c915359d, type: 3}

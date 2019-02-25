@@ -23,10 +23,10 @@ Supports Windows, Linux and Mac OS X
 
 ### Team
 
-|                              X                               |                              Y                               |
+|                    Leif Thysell Sundqvist                    |                       Staffan Sandberg                       |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![Image of Leif](https://pjheden.github.io/bearwithme-gamejam-2019/website-images/11743680.jpg) | ![Y](https://pjheden.github.io/bearwithme-gamejam-2019/website-images/2291621.png) |
+| ![Image of Leif](https://pjheden.github.io/bearwithme-gamejam-2019/website-images/11743680.jpg) | ![Staffan](https://pjheden.github.io/bearwithme-gamejam-2019/website-images/2291621.png) |
 
 Julian Hedén |        Credits        
 :----------: | :-----------:
-![Image of Julian](https://pjheden.github.io/bearwithme-gamejam-2019/website-images/12831087.jpg) | Music and Sound Effects<br />X helped with the main sound<br />Y helped with all the sound effects 
+![Image of Julian](https://pjheden.github.io/bearwithme-gamejam-2019/website-images/12831087.jpg) | Music and Sound Effects<br />**Viktor Granström**(https://github.com/Katsu-toshi) made the music.<br />**Valdemar Delding** made all the sound effects. 

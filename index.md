@@ -8,7 +8,10 @@ In late January 2019 we attended a 48 hour hackathon called Global Game Jam. Thi
 
 Bear With Me is a Toy Story inspired arcade game, where you race against the time to clean up up the room.
 
+### Gameplay video
+[![Image of Game](https://pjheden.github.io/bearwithme-gamejam-2019/website-images/bear-with-me-video.jpg)](https://www.youtube.com/watch?v=WluqITRDLzE)
 
+Click the image above to watch the gameplay video on Youtube.
 
 ### Demo
 [![Image of Game](https://pjheden.github.io/bearwithme-gamejam-2019/website-images/game.png)](https://globalgamejam.org/2019/games/bear-me)
